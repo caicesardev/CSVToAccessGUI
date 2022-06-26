@@ -1,4 +1,8 @@
 <RCC>
   <qresource>
+    <file>../res/right-arrow.png</file>
+    <file>../res/conversion-settings.png</file>
+    <file>../res/up.png</file>
+    <file>../res/down.png</file>
   </qresource>
 </RCC>
