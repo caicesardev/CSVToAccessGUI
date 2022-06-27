@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowodceUj.ui'
+## Form generated from reading UI file 'MainWindowlEoVKL.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.title_frame = QFrame(self.centralwidget)
         self.title_frame.setObjectName(u"title_frame")
-        self.title_frame.setMaximumSize(QSize(16777215, 100))
+        self.title_frame.setMaximumSize(QSize(16777215, 135))
         self.verticalLayout_6 = QVBoxLayout(self.title_frame)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.title_label = QLabel(self.title_frame)
@@ -63,12 +63,47 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.subtitle_label)
 
+        self.frame = QFrame(self.title_frame)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_8 = QHBoxLayout(self.frame)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalSpacer_4 = QSpacerItem(865, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_4)
+
+        self.help_button = QPushButton(self.frame)
+        self.help_button.setObjectName(u"help_button")
+        self.help_button.setCursor(QCursor(Qt.PointingHandCursor))
+        icon = QIcon()
+        icon.addFile(u":/res/question.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.help_button.setIcon(icon)
+        self.help_button.setIconSize(QSize(20, 20))
+        self.help_button.setFlat(True)
+
+        self.horizontalLayout_8.addWidget(self.help_button)
+
+        self.settings_button = QPushButton(self.frame)
+        self.settings_button.setObjectName(u"settings_button")
+        self.settings_button.setCursor(QCursor(Qt.PointingHandCursor))
+        icon1 = QIcon()
+        icon1.addFile(u":/res/gear.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settings_button.setIcon(icon1)
+        self.settings_button.setIconSize(QSize(20, 20))
+        self.settings_button.setFlat(True)
+
+        self.horizontalLayout_8.addWidget(self.settings_button)
+
+
+        self.verticalLayout_6.addWidget(self.frame)
+
 
         self.verticalLayout_5.addWidget(self.title_frame)
 
         self.container_frame = QFrame(self.centralwidget)
         self.container_frame.setObjectName(u"container_frame")
-        self.container_frame.setMinimumSize(QSize(0, 300))
+        self.container_frame.setMinimumSize(QSize(0, 240))
         self.horizontalLayout = QHBoxLayout(self.container_frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_frame = QFrame(self.container_frame)
@@ -89,9 +124,9 @@ class Ui_MainWindow(object):
         self.clean_left_button.setObjectName(u"clean_left_button")
         self.clean_left_button.setMinimumSize(QSize(0, 30))
         self.clean_left_button.setCursor(QCursor(Qt.PointingHandCursor))
-        icon = QIcon()
-        icon.addFile(u":/res/cleaning.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.clean_left_button.setIcon(icon)
+        icon2 = QIcon()
+        icon2.addFile(u":/res/cleaning.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.clean_left_button.setIcon(icon2)
         self.clean_left_button.setIconSize(QSize(32, 32))
         self.clean_left_button.setFlat(True)
 
@@ -131,7 +166,7 @@ class Ui_MainWindow(object):
         self.clean_right_button.setObjectName(u"clean_right_button")
         self.clean_right_button.setMinimumSize(QSize(0, 30))
         self.clean_right_button.setCursor(QCursor(Qt.PointingHandCursor))
-        self.clean_right_button.setIcon(icon)
+        self.clean_right_button.setIcon(icon2)
         self.clean_right_button.setIconSize(QSize(32, 32))
         self.clean_right_button.setFlat(True)
 
@@ -195,9 +230,9 @@ class Ui_MainWindow(object):
         font4.setPointSize(10)
         self.dump_data_button.setFont(font4)
         self.dump_data_button.setCursor(QCursor(Qt.PointingHandCursor))
-        icon1 = QIcon()
-        icon1.addFile(u":/res/conversion-settings.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.dump_data_button.setIcon(icon1)
+        icon3 = QIcon()
+        icon3.addFile(u":/res/conversion-settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.dump_data_button.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.dump_data_button)
 
@@ -207,10 +242,10 @@ class Ui_MainWindow(object):
         self.show_hide_details_button.setMaximumSize(QSize(300, 16777215))
         self.show_hide_details_button.setFont(font4)
         self.show_hide_details_button.setCursor(QCursor(Qt.PointingHandCursor))
-        icon2 = QIcon()
-        icon2.addFile(u":/res/down.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon2.addFile(u":/res/up.png", QSize(), QIcon.Normal, QIcon.On)
-        self.show_hide_details_button.setIcon(icon2)
+        icon4 = QIcon()
+        icon4.addFile(u":/res/down.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u":/res/up.png", QSize(), QIcon.Normal, QIcon.On)
+        self.show_hide_details_button.setIcon(icon4)
         self.show_hide_details_button.setCheckable(True)
 
         self.horizontalLayout_2.addWidget(self.show_hide_details_button)
@@ -269,6 +304,7 @@ class Ui_MainWindow(object):
 
         self.mdb_table = QTableWidget(self.table_right)
         self.mdb_table.setObjectName(u"mdb_table")
+        self.mdb_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.mdb_table.setAlternatingRowColors(True)
         self.mdb_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.mdb_table.setGridStyle(Qt.DashLine)
@@ -315,6 +351,26 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.auto_scroll_checkbox)
 
+        self.clean_output_button = QPushButton(self.output_buttons_frame)
+        self.clean_output_button.setObjectName(u"clean_output_button")
+        self.clean_output_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.clean_output_button.setIcon(icon2)
+        self.clean_output_button.setIconSize(QSize(18, 18))
+        self.clean_output_button.setFlat(True)
+
+        self.horizontalLayout_7.addWidget(self.clean_output_button)
+
+        self.copy_output_button = QPushButton(self.output_buttons_frame)
+        self.copy_output_button.setObjectName(u"copy_output_button")
+        self.copy_output_button.setCursor(QCursor(Qt.PointingHandCursor))
+        icon5 = QIcon()
+        icon5.addFile(u":/res/copy.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.copy_output_button.setIcon(icon5)
+        self.copy_output_button.setIconSize(QSize(18, 18))
+        self.copy_output_button.setFlat(True)
+
+        self.horizontalLayout_7.addWidget(self.copy_output_button)
+
         self.export_button = QPushButton(self.output_buttons_frame)
         self.export_button.setObjectName(u"export_button")
         self.export_button.setMinimumSize(QSize(0, 0))
@@ -322,9 +378,9 @@ class Ui_MainWindow(object):
         self.export_button.setStyleSheet(u"QPushButton#export_button {\n"
 "	padding: 5px;\n"
 "}")
-        icon3 = QIcon()
-        icon3.addFile(u":/res/save.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.export_button.setIcon(icon3)
+        icon6 = QIcon()
+        icon6.addFile(u":/res/save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.export_button.setIcon(icon6)
         self.export_button.setIconSize(QSize(18, 18))
         self.export_button.setFlat(True)
 
@@ -370,6 +426,8 @@ class Ui_MainWindow(object):
         self.mdb_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo MDB:", None))
         self.output_label.setText(QCoreApplication.translate("MainWindow", u"Output:", None))
         self.auto_scroll_checkbox.setText(QCoreApplication.translate("MainWindow", u"Scroll autom\u00e1tico", None))
+        self.clean_output_button.setText("")
+        self.copy_output_button.setText("")
         self.export_button.setText("")
     # retranslateUi
 

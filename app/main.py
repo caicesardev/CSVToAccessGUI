@@ -323,6 +323,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.set_settings()
 
         self.output.insertPlainText("--------- INIT APP ---------\n")
+        self.output.insertPlainText(
+            "--> Select a CSV and MS Access file to start <--\n")
 
     def init_ui(self):
         self.setupUi(self)
@@ -341,7 +343,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.available_tables_combo.currentIndexChanged.connect(
             lambda: self.mdb_droppable_frame.populate_mdb_table(self.available_tables_combo.currentText()))
         self.output.textChanged.connect(self.auto_scroll)
+        self.copy_output_button.clicked.connect(self.copy_output)
         self.export_button.clicked.connect(self.save_output)
+        self.clean_output_button.clicked.connect(self.clean_output)
 
     def dump_data(self):
         try:
@@ -368,10 +372,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     acc_engine = create_engine(cnn_url)
                     df.to_sql(f"{table}", acc_engine,
                               if_exists='replace', index=False)
+                    now = datetime.now()
+                    current_time = now.strftime("%H:%M:%S")
+                    self.output.insertPlainText(
+                        f"--------- WRITE COMPLETED ---------\n")
                     # Refresh table with new data.
                     self.mdb_droppable_frame.populate_mdb_table(table)
         except Exception as e:
             self.output.insertPlainText(f"--------- ERROR ---------\n{e}")
+
+    def clean_output(self):
+        self.output.clear()
+
+    def copy_output(self):
+        self.output.selectAll()
+        self.output.copy()
 
     def auto_scroll(self):
         if self.auto_scroll_checkbox.isChecked():

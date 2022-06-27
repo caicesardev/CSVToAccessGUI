@@ -6,5 +6,8 @@
     <file>../res/down.png</file>
     <file>../res/cleaning.png</file>
     <file>../res/save.png</file>
+    <file>../res/copy.png</file>
+    <file>../res/gear.png</file>
+    <file>../res/question.png</file>
   </qresource>
 </RCC>
