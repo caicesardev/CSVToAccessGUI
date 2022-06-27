@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowNPPEFk.ui'
+## Form generated from reading UI file 'MainWindowodceUj.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
-    QFrame, QHBoxLayout, QHeaderView, QLabel,
-    QMainWindow, QPlainTextEdit, QPushButton, QSizePolicy,
-    QSpacerItem, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
+    QComboBox, QFrame, QHBoxLayout, QHeaderView,
+    QLabel, QMainWindow, QPlainTextEdit, QPushButton,
+    QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_MainWindow(object):
@@ -290,12 +290,48 @@ class Ui_MainWindow(object):
 
         self.output = QPlainTextEdit(self.details_frame)
         self.output.setObjectName(u"output")
-        self.output.setMaximumSize(QSize(16777215, 70))
+        self.output.setMaximumSize(QSize(16777215, 200))
         self.output.setFont(font)
         self.output.setUndoRedoEnabled(False)
         self.output.setReadOnly(True)
 
         self.verticalLayout_7.addWidget(self.output)
+
+        self.output_buttons_frame = QFrame(self.details_frame)
+        self.output_buttons_frame.setObjectName(u"output_buttons_frame")
+        self.horizontalLayout_7 = QHBoxLayout(self.output_buttons_frame)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, -1, 0, -1)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_3)
+
+        self.auto_scroll_checkbox = QCheckBox(self.output_buttons_frame)
+        self.auto_scroll_checkbox.setObjectName(u"auto_scroll_checkbox")
+        font5 = QFont()
+        font5.setFamilies([u"Roboto"])
+        self.auto_scroll_checkbox.setFont(font5)
+        self.auto_scroll_checkbox.setChecked(True)
+
+        self.horizontalLayout_7.addWidget(self.auto_scroll_checkbox)
+
+        self.export_button = QPushButton(self.output_buttons_frame)
+        self.export_button.setObjectName(u"export_button")
+        self.export_button.setMinimumSize(QSize(0, 0))
+        self.export_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.export_button.setStyleSheet(u"QPushButton#export_button {\n"
+"	padding: 5px;\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/res/save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.export_button.setIcon(icon3)
+        self.export_button.setIconSize(QSize(18, 18))
+        self.export_button.setFlat(True)
+
+        self.horizontalLayout_7.addWidget(self.export_button)
+
+
+        self.verticalLayout_7.addWidget(self.output_buttons_frame)
 
 
         self.verticalLayout_5.addWidget(self.details_frame)
@@ -333,5 +369,7 @@ class Ui_MainWindow(object):
         self.csv_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo CSV:", None))
         self.mdb_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo MDB:", None))
         self.output_label.setText(QCoreApplication.translate("MainWindow", u"Output:", None))
+        self.auto_scroll_checkbox.setText(QCoreApplication.translate("MainWindow", u"Scroll autom\u00e1tico", None))
+        self.export_button.setText("")
     # retranslateUi
 

@@ -1,11 +1,18 @@
+from threading import currentThread
+import sqlalchemy_access.pyodbc  # necessary import
 import sys
 import os
 import subprocess
 import pandas as pd
 import pyodbc
+import urllib
+
+from sqlalchemy import create_engine
+from datetime import datetime
 
 from ui.ui_MainWindow import Ui_MainWindow
 
+from PySide6.QtGui import QTextDocument, QTextCursor
 from PySide6.QtCore import (
     Qt,
     QSettings,
@@ -22,7 +29,8 @@ from PySide6.QtWidgets import (
     QLabel,
     QVBoxLayout,
     QTableWidgetItem,
-    QFileDialog
+    QFileDialog,
+    QMessageBox,
 )
 
 __version__ = "1.0.0"
@@ -64,17 +72,6 @@ class CSVDroppableFrame(QFrame):
             "QLabel {font-size: 17px; font-weight: bold;}")
         self.csv_title_label.setAlignment(Qt.AlignCenter)
         self.selected_csv_file_label = QLabel()
-        self.selected_csv_file_label.setText(
-            """
-        <html>
-        <head/>
-            <body>
-                <p>
-                    <span style=" color:#585858;">Archivo CSV seleccionado:</span>
-                    </p>
-            </body>
-        </html>
-        """)
         self.selected_csv_file_label.setMaximumHeight(35)
         self.selected_csv_file_label.setStyleSheet("QLabel {font-size: 13px;}")
         self.selected_csv_file_label.setWordWrap(True)
@@ -94,14 +91,16 @@ class CSVDroppableFrame(QFrame):
             <head/>
                 <body>
                     <p>
-                    <span style=" color:#585858;">Archivo CSV seleccionado: {self.csv_mdb_path}</span>
+                    <span style=" color:#585858;">{self.csv_mdb_path}</span>
                     </p>
                 </body>
             </html>
             """)
             self.populate_csv_table(self.csv_mdb_path)
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
             self.parent.output.insertPlainText(
-                f"Loaded {self.csv_mdb_path} file successfully.\n")
+                f"{current_time} - Loaded {self.csv_mdb_path} file successfully.\n")
             event.accept()
         return super().mousePressEvent(event)
 
@@ -132,14 +131,16 @@ class CSVDroppableFrame(QFrame):
                 <head/>
                     <body>
                         <p>
-                        <span style=" color:#585858;">Archivo CSV seleccionado: {self.csv_file}</span>
+                        <span style=" color:#585858;">{self.csv_file}</span>
                         </p>
                     </body>
                 </html>
                 """)
                 self.populate_csv_table(self.csv_file)
+                now = datetime.now()
+                current_time = now.strftime("%H:%M:%S")
                 self.parent.output.insertPlainText(
-                    f"Loaded {self.csv_file} file successfully.\n")
+                    f"{current_time} - Loaded {self.csv_file} file successfully.\n")
         return super().dropEvent(event)
 
     def populate_csv_table(self, csv_file):
@@ -190,17 +191,6 @@ class MDBDroppableFrame(QFrame):
             "QLabel {font-size: 17px; font-weight: bold;}")
         self.mdb_title_label.setAlignment(Qt.AlignCenter)
         self.selected_mdb_file_label = QLabel()
-        self.selected_mdb_file_label.setText(
-            """
-        <html>
-        <head/>
-            <body>
-                <p>
-                    <span style=" color:#585858;">Archivo MDB seleccionado:</span>
-                    </p>
-            </body>
-        </html>
-        """)
         self.selected_mdb_file_label.setMaximumHeight(35)
         self.selected_mdb_file_label.setStyleSheet("QLabel {font-size: 13px;}")
         self.selected_mdb_file_label.setWordWrap(True)
@@ -220,7 +210,7 @@ class MDBDroppableFrame(QFrame):
             <head/>
                 <body>
                     <p>
-                    <span style=" color:#585858;">Archivo MDB seleccionado: {self.mdb_file}</span>
+                    <span style=" color:#585858;">{self.mdb_file}</span>
                     </p>
                 </body>
             </html>
@@ -240,8 +230,10 @@ class MDBDroppableFrame(QFrame):
                 self.parent.available_tables_combo.addItem(table)
             current_table = self.parent.available_tables_combo.currentText()
             self.populate_mdb_table(current_table)
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
             self.parent.output.insertPlainText(
-                f"Loaded {self.mdb_file} file successfully.\n")
+                f"{current_time} - Loaded {self.mdb_file} file successfully.\n")
             event.accept()
         return super().mousePressEvent(event)
 
@@ -272,7 +264,7 @@ class MDBDroppableFrame(QFrame):
                 <head/>
                     <body>
                         <p>
-                        <span style=" color:#585858;">Archivo MDB seleccionado: {self.mdb_file}</span>
+                        <span style=" color:#585858;">{self.mdb_file}</span>
                         </p>
                     </body>
                 </html>
@@ -291,9 +283,11 @@ class MDBDroppableFrame(QFrame):
                 for table in reversed(table_list):
                     self.parent.available_tables_combo.addItem(table)
                 current_table = self.parent.available_tables_combo.currentText()
-                self.populate_mdb_table(self.mdb_file, current_table)
+                self.populate_mdb_table(current_table)
+                now = datetime.now()
+                current_time = now.strftime("%H:%M:%S")
                 self.parent.output.insertPlainText(
-                    f"Loaded {self.mdb_file} file successfully.\n")
+                    f"{current_time} - Loaded {self.mdb_file} file successfully.\n")
         return super().dropEvent(event)
 
     def populate_mdb_table(self, table_name):
@@ -305,8 +299,10 @@ class MDBDroppableFrame(QFrame):
         try:
             mdb_data = pd.read_sql(f"SELECT * FROM {table_name}", con)
         except Exception as e:
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
             self.parent.output.insertPlainText(
-                f"{e}\n")
+                f"{current_time} - {e}\n")
         table.setRowCount(len(mdb_data))
         table.setColumnCount(len(mdb_data.columns))
         table.setHorizontalHeaderLabels(mdb_data.columns)
@@ -336,46 +332,76 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mdb_droppable_frame = MDBDroppableFrame(self)
         self.verticalLayout_2.addWidget(self.mdb_droppable_frame)
 
+        self.dump_data_button.clicked.connect(self.dump_data)
         self.show_hide_details_button.clicked.connect(self.show_hide_details)
         self.clean_left_button.clicked.connect(
             lambda: self.clean_drop("left"))
         self.clean_right_button.clicked.connect(
             lambda: self.clean_drop("right"))
-
         self.available_tables_combo.currentIndexChanged.connect(
             lambda: self.mdb_droppable_frame.populate_mdb_table(self.available_tables_combo.currentText()))
+        self.output.textChanged.connect(self.auto_scroll)
+        self.export_button.clicked.connect(self.save_output)
+
+    def dump_data(self):
+        try:
+            self.csv_file = self.csv_droppable_frame.selected_csv_file_label.text()
+            self.mdb_file = self.mdb_droppable_frame.selected_mdb_file_label.text()
+            convert_to_plain = QTextDocument()
+            convert_to_plain.setHtml(self.csv_file)
+            convert_to_plain_2 = QTextDocument()
+            convert_to_plain_2.setHtml(self.mdb_file)
+            csv_file = convert_to_plain.toPlainText()
+            mdb_file = convert_to_plain_2.toPlainText()
+            # If the two file exist.
+            if csv_file and mdb_file:
+                ret = QMessageBox.question(
+                    self, "Confirmar acción", f"¿Seguro que quieres realizar esta acción? Esto podría sobreescribir todos los datos de la tabla ('{self.available_tables_combo.currentText()}').")
+                if ret == QMessageBox.Yes:
+                    df = pd.read_csv(csv_file)
+                    table = self.available_tables_combo.currentText()
+                    cnn_str = (
+                        r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+                        f"DBQ={mdb_file}"
+                    )
+                    cnn_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(cnn_str)}"
+                    acc_engine = create_engine(cnn_url)
+                    df.to_sql(f"{table}", acc_engine,
+                              if_exists='replace', index=False)
+                    # Refresh table with new data.
+                    self.mdb_droppable_frame.populate_mdb_table(table)
+        except Exception as e:
+            self.output.insertPlainText(f"--------- ERROR ---------\n{e}")
+
+    def auto_scroll(self):
+        if self.auto_scroll_checkbox.isChecked():
+            self.output.moveCursor(QTextCursor.End)
+
+    def save_output(self):
+        self.path, _ = QFileDialog.getSaveFileName(
+            self, "Guardar como", "output.txt", "Documentos de texto (*.txt)",)
+        if self.path == '':
+            return
+        text = self.output.toPlainText()
+        try:
+            with open(self.path, 'w') as f:
+                f.write(text)
+        except Exception as e:
+            print(e)
+            QMessageBox.critical(
+                self, "Error de guardado", f"No se ha podido guardar el archivo en {self.path}")
 
     def clean_drop(self, frame):
         if frame == "left":
-            self.csv_droppable_frame.selected_csv_file_label.setText(
-                """
-            <html>
-            <head/>
-                <body>
-                    <p>
-                    <span style=" color:#585858;">Archivo CSV seleccionado:</span>
-                    </p>
-                </body>
-            </html>
-            """)
+            self.csv_droppable_frame.selected_csv_file_label.setText("")
             self.csv_table.setRowCount(0)
             self.csv_table.setColumnCount(0)
             self.csv_table.resizeColumnsToContents()
             self.csv_table.clear()
         else:
+            self.mdb_droppable_frame.selected_mdb_file_label.setText("")
             self.available_tables_combo.setEnabled(False)
             self.available_tables_combo.clear()
-            self.mdb_droppable_frame.selected_mdb_file_label.setText(
-                """
-            <html>
-            <head/>
-                <body>
-                    <p>
-                    <span style=" color:#585858;">Archivo MDB seleccionado:</span>
-                    </p>
-                </body>
-            </html>
-            """)
             self.mdb_table.setRowCount(0)
             self.mdb_table.setColumnCount(0)
             self.mdb_table.resizeColumnsToContents()
