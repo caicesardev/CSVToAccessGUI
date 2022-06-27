@@ -145,8 +145,6 @@ class CSVDroppableFrame(QFrame):
     def populate_csv_table(self, csv_file):
         csv_data = pd.read_csv(csv_file)
         table = self.parent.csv_table
-        # table.resizeColumnsToContents()
-        # table.resizeRowsToContents()
         table.setRowCount(len(csv_data))
         table.setColumnCount(len(csv_data.columns))
         table.setHorizontalHeaderLabels(csv_data.columns)
@@ -211,9 +209,9 @@ class MDBDroppableFrame(QFrame):
         self.setCursor(Qt.DragCopyCursor)
 
     def mousePressEvent(self, event) -> None:
-        self.mdb_path, _ = QFileDialog.getOpenFileName(
+        self.mdb_file, _ = QFileDialog.getOpenFileName(
             self, "Abrir", "", "Microsoft Access (*.accdb)")
-        if self.mdb_path == '' or not str(self.mdb_path).endswith(".accdb"):
+        if self.mdb_file == '' or not str(self.mdb_file).endswith(".accdb"):
             event.ignore()
             return
         else:
@@ -222,7 +220,7 @@ class MDBDroppableFrame(QFrame):
             <head/>
                 <body>
                     <p>
-                    <span style=" color:#585858;">Archivo MDB seleccionado: {self.mdb_path}</span>
+                    <span style=" color:#585858;">Archivo MDB seleccionado: {self.mdb_file}</span>
                     </p>
                 </body>
             </html>
@@ -230,7 +228,7 @@ class MDBDroppableFrame(QFrame):
             self.parent.available_tables_combo.setEnabled(True)
             con = pyodbc.connect(
                 r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
-                f"DBQ={self.mdb_path}"
+                f"DBQ={self.mdb_file}"
             )
             cur = con.cursor()
             # Making a list because I want to show user made tables first.
@@ -240,9 +238,10 @@ class MDBDroppableFrame(QFrame):
             # Reversing items in the list in order to show user made tables first.
             for table in reversed(table_list):
                 self.parent.available_tables_combo.addItem(table)
-
+            current_table = self.parent.available_tables_combo.currentText()
+            self.populate_mdb_table(current_table)
             self.parent.output.insertPlainText(
-                f"Loaded {self.mdb_path} file successfully.\n")
+                f"Loaded {self.mdb_file} file successfully.\n")
             event.accept()
         return super().mousePressEvent(event)
 
@@ -263,6 +262,7 @@ class MDBDroppableFrame(QFrame):
 
     def dropEvent(self, event) -> None:
         if event.mimeData().hasUrls:
+            # Checks if you are dropping a .accdb file.
             if event.mimeData().urls()[0].toString().endswith(".accdb"):
                 event.setDropAction(Qt.CopyAction)
                 event.accept()
@@ -290,17 +290,35 @@ class MDBDroppableFrame(QFrame):
                 # Reversing items in the list in order to show user made tables first.
                 for table in reversed(table_list):
                     self.parent.available_tables_combo.addItem(table)
-
+                current_table = self.parent.available_tables_combo.currentText()
+                self.populate_mdb_table(self.mdb_file, current_table)
                 self.parent.output.insertPlainText(
                     f"Loaded {self.mdb_file} file successfully.\n")
         return super().dropEvent(event)
+
+    def populate_mdb_table(self, table_name):
+        table = self.parent.mdb_table
+        con = pyodbc.connect(
+            r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+            f"DBQ={self.mdb_file}"
+        )
+        try:
+            mdb_data = pd.read_sql(f"SELECT * FROM {table_name}", con)
+        except Exception as e:
+            self.parent.output.insertPlainText(
+                f"{e}\n")
+        table.setRowCount(len(mdb_data))
+        table.setColumnCount(len(mdb_data.columns))
+        table.setHorizontalHeaderLabels(mdb_data.columns)
+        for i in range(len(mdb_data)):
+            for j in range(len(mdb_data.columns)):
+                table.setItem(i, j, QTableWidgetItem(str(mdb_data.iat[i, j])))
 
 
 # MainWindow.
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-
         self.init_ui()
         self.show_details = True
         # Get app settings.
@@ -323,6 +341,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             lambda: self.clean_drop("left"))
         self.clean_right_button.clicked.connect(
             lambda: self.clean_drop("right"))
+
+        self.available_tables_combo.currentIndexChanged.connect(
+            lambda: self.mdb_droppable_frame.populate_mdb_table(self.available_tables_combo.currentText()))
 
     def clean_drop(self, frame):
         if frame == "left":

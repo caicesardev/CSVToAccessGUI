@@ -120,6 +120,9 @@
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="toolTip">
+                <string>Limpiar input</string>
+               </property>
                <property name="icon">
                 <iconset resource="../images.qrc">
                  <normaloff>:/res/cleaning.png</normaloff>:/res/cleaning.png</iconset>
@@ -202,6 +205,9 @@
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="toolTip">
+                <string>Limpiar input</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -268,6 +274,12 @@
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="font">
+                <font>
+                 <family>Roboto</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
                <property name="toolTip">
                 <string>Selecciona una tabla del archivo mdb</string>
                </property>
@@ -280,6 +292,9 @@
         </widget>
        </item>
       </layout>
+      <zorder>image_label</zorder>
+      <zorder>left_frame</zorder>
+      <zorder>right_frame</zorder>
      </widget>
     </item>
     <item>
@@ -430,9 +445,6 @@
                </property>
                <property name="selectionBehavior">
                 <enum>QAbstractItemView::SelectRows</enum>
-               </property>
-               <property name="gridStyle">
-                <enum>Qt::DashLine</enum>
                </property>
                <attribute name="verticalHeaderVisible">
                 <bool>false</bool>

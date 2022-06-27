@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowSurMAz.ui'
+## Form generated from reading UI file 'MainWindowNPPEFk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -156,6 +156,10 @@ class Ui_MainWindow(object):
         self.available_tables_combo = QComboBox(self.combo_box_frame)
         self.available_tables_combo.setObjectName(u"available_tables_combo")
         self.available_tables_combo.setEnabled(False)
+        font3 = QFont()
+        font3.setFamilies([u"Roboto"])
+        font3.setPointSize(9)
+        self.available_tables_combo.setFont(font3)
 
         self.horizontalLayout_3.addWidget(self.available_tables_combo)
 
@@ -165,6 +169,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.right_frame)
 
+        self.image_label.raise_()
+        self.left_frame.raise_()
+        self.right_frame.raise_()
 
         self.verticalLayout_5.addWidget(self.container_frame)
 
@@ -184,9 +191,9 @@ class Ui_MainWindow(object):
         self.dump_data_button.setObjectName(u"dump_data_button")
         self.dump_data_button.setMinimumSize(QSize(0, 35))
         self.dump_data_button.setMaximumSize(QSize(300, 16777215))
-        font3 = QFont()
-        font3.setPointSize(10)
-        self.dump_data_button.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(10)
+        self.dump_data_button.setFont(font4)
         self.dump_data_button.setCursor(QCursor(Qt.PointingHandCursor))
         icon1 = QIcon()
         icon1.addFile(u":/res/conversion-settings.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -198,7 +205,7 @@ class Ui_MainWindow(object):
         self.show_hide_details_button.setObjectName(u"show_hide_details_button")
         self.show_hide_details_button.setMinimumSize(QSize(0, 35))
         self.show_hide_details_button.setMaximumSize(QSize(300, 16777215))
-        self.show_hide_details_button.setFont(font3)
+        self.show_hide_details_button.setFont(font4)
         self.show_hide_details_button.setCursor(QCursor(Qt.PointingHandCursor))
         icon2 = QIcon()
         icon2.addFile(u":/res/down.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -244,7 +251,6 @@ class Ui_MainWindow(object):
         self.csv_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.csv_table.setAlternatingRowColors(True)
         self.csv_table.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.csv_table.setGridStyle(Qt.DashLine)
         self.csv_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_9.addWidget(self.csv_table)
@@ -305,6 +311,12 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CSVToAccessGUI", None))
         self.title_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:20pt; color:#ff8e00;\">CSVToAccessGUI</span></p></body></html>", None))
         self.subtitle_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente</span></p></body></html>", None))
+#if QT_CONFIG(tooltip)
+        self.clean_left_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar input", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.clean_right_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar input", None))
+#endif // QT_CONFIG(tooltip)
         self.clean_right_button.setText("")
         self.selected_table_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Tabla seleccionada:</span></p></body></html>", None))
 #if QT_CONFIG(tooltip)
