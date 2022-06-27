@@ -488,11 +488,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="plainTextEdit">
+        <widget class="QPlainTextEdit" name="output">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">

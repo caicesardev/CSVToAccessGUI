@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowljaoJe.ui'
+## Form generated from reading UI file 'MainWindowSurMAz.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -282,14 +282,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.output_label)
 
-        self.plainTextEdit = QPlainTextEdit(self.details_frame)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        self.plainTextEdit.setMaximumSize(QSize(16777215, 50))
-        self.plainTextEdit.setFont(font)
-        self.plainTextEdit.setUndoRedoEnabled(False)
-        self.plainTextEdit.setReadOnly(True)
+        self.output = QPlainTextEdit(self.details_frame)
+        self.output.setObjectName(u"output")
+        self.output.setMaximumSize(QSize(16777215, 70))
+        self.output.setFont(font)
+        self.output.setUndoRedoEnabled(False)
+        self.output.setReadOnly(True)
 
-        self.verticalLayout_7.addWidget(self.plainTextEdit)
+        self.verticalLayout_7.addWidget(self.output)
 
 
         self.verticalLayout_5.addWidget(self.details_frame)

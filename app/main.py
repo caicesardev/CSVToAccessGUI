@@ -2,6 +2,7 @@ import sys
 import os
 import subprocess
 import pandas as pd
+import pyodbc
 
 from ui.ui_MainWindow import Ui_MainWindow
 
@@ -20,7 +21,8 @@ from PySide6.QtWidgets import (
     QFrame,
     QLabel,
     QVBoxLayout,
-    QTableWidgetItem
+    QTableWidgetItem,
+    QFileDialog
 )
 
 __version__ = "1.0.0"
@@ -78,6 +80,30 @@ class CSVDroppableFrame(QFrame):
         self.selected_csv_file_label.setWordWrap(True)
         self.verticalLayout_3.addWidget(self.csv_title_label)
         self.verticalLayout_3.addWidget(self.selected_csv_file_label)
+        self.setCursor(Qt.DragCopyCursor)
+
+    def mousePressEvent(self, event) -> None:
+        self.csv_mdb_path, _ = QFileDialog.getOpenFileName(
+            self, "Abrir", "", "Archivo CSV (*.csv)")
+        if self.csv_mdb_path == '' or not str(self.csv_mdb_path).endswith(".csv"):
+            event.ignore()
+            return
+        else:
+            self.selected_csv_file_label.setText(f"""
+            <html>
+            <head/>
+                <body>
+                    <p>
+                    <span style=" color:#585858;">Archivo CSV seleccionado: {self.csv_mdb_path}</span>
+                    </p>
+                </body>
+            </html>
+            """)
+            self.populate_csv_table(self.csv_mdb_path)
+            self.parent.output.insertPlainText(
+                f"Loaded {self.csv_mdb_path} file successfully.\n")
+            event.accept()
+        return super().mousePressEvent(event)
 
     def dragEnterEvent(self, event) -> None:
         if event.mimeData().hasUrls:
@@ -112,6 +138,8 @@ class CSVDroppableFrame(QFrame):
                 </html>
                 """)
                 self.populate_csv_table(self.csv_file)
+                self.parent.output.insertPlainText(
+                    f"Loaded {self.csv_file} file successfully.\n")
         return super().dropEvent(event)
 
     def populate_csv_table(self, csv_file):
@@ -180,6 +208,43 @@ class MDBDroppableFrame(QFrame):
         self.selected_mdb_file_label.setWordWrap(True)
         self.verticalLayout_3.addWidget(self.mdb_title_label)
         self.verticalLayout_3.addWidget(self.selected_mdb_file_label)
+        self.setCursor(Qt.DragCopyCursor)
+
+    def mousePressEvent(self, event) -> None:
+        self.mdb_path, _ = QFileDialog.getOpenFileName(
+            self, "Abrir", "", "Microsoft Access (*.accdb)")
+        if self.mdb_path == '' or not str(self.mdb_path).endswith(".accdb"):
+            event.ignore()
+            return
+        else:
+            self.selected_mdb_file_label.setText(f"""
+            <html>
+            <head/>
+                <body>
+                    <p>
+                    <span style=" color:#585858;">Archivo MDB seleccionado: {self.mdb_path}</span>
+                    </p>
+                </body>
+            </html>
+            """)
+            self.parent.available_tables_combo.setEnabled(True)
+            con = pyodbc.connect(
+                r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+                f"DBQ={self.mdb_path}"
+            )
+            cur = con.cursor()
+            # Making a list because I want to show user made tables first.
+            table_list = []
+            for row in cur.tables():
+                table_list.append(row.table_name)
+            # Reversing items in the list in order to show user made tables first.
+            for table in reversed(table_list):
+                self.parent.available_tables_combo.addItem(table)
+
+            self.parent.output.insertPlainText(
+                f"Loaded {self.mdb_path} file successfully.\n")
+            event.accept()
+        return super().mousePressEvent(event)
 
     def dragEnterEvent(self, event) -> None:
         if event.mimeData().hasUrls:
@@ -213,6 +278,21 @@ class MDBDroppableFrame(QFrame):
                 </html>
                 """)
                 self.parent.available_tables_combo.setEnabled(True)
+                con = pyodbc.connect(
+                    r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+                    f"DBQ={self.mdb_file}"
+                )
+                cur = con.cursor()
+                # Making a list because I want to show user made tables first.
+                table_list = []
+                for row in cur.tables():
+                    table_list.append(row.table_name)
+                # Reversing items in the list in order to show user made tables first.
+                for table in reversed(table_list):
+                    self.parent.available_tables_combo.addItem(table)
+
+                self.parent.output.insertPlainText(
+                    f"Loaded {self.mdb_file} file successfully.\n")
         return super().dropEvent(event)
 
 
@@ -222,10 +302,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
 
         self.init_ui()
+        self.show_details = True
         # Get app settings.
         self.get_settings()
         # Set app settings.
         self.set_settings()
+
+        self.output.insertPlainText("--------- INIT APP ---------\n")
 
     def init_ui(self):
         self.setupUi(self)
@@ -235,6 +318,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mdb_droppable_frame = MDBDroppableFrame(self)
         self.verticalLayout_2.addWidget(self.mdb_droppable_frame)
 
+        self.show_hide_details_button.clicked.connect(self.show_hide_details)
         self.clean_left_button.clicked.connect(
             lambda: self.clean_drop("left"))
         self.clean_right_button.clicked.connect(
@@ -248,7 +332,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             <head/>
                 <body>
                     <p>
-                    <span style=" color:#585858;">Archivo MDB seleccionado:</span>
+                    <span style=" color:#585858;">Archivo CSV seleccionado:</span>
                     </p>
                 </body>
             </html>
@@ -258,6 +342,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.csv_table.resizeColumnsToContents()
             self.csv_table.clear()
         else:
+            self.available_tables_combo.setEnabled(False)
+            self.available_tables_combo.clear()
             self.mdb_droppable_frame.selected_mdb_file_label.setText(
                 """
             <html>
@@ -270,6 +356,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             </html>
             """)
             self.mdb_table.setRowCount(0)
+            self.mdb_table.setColumnCount(0)
+            self.mdb_table.resizeColumnsToContents()
+            self.mdb_table.clear()
+
+    def show_hide_details(self):
+        # If currently showing details.
+        if self.show_details:
+            self.details_frame.hide()
+            self.show_details = False
+        else:
+            self.details_frame.show()
+            self.show_details = True
 
     def get_settings(self):
         self.w_attrib = QSettings("CSVToAccessGUI", "WindowAttributes")
