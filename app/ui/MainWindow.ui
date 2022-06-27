@@ -37,12 +37,6 @@
         <height>100</height>
        </size>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
         <widget class="QLabel" name="title_label">
@@ -86,22 +80,65 @@
         <height>300</height>
        </size>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QFrame" name="left_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout"/>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QFrame" name="clean_frame">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>60</height>
+             </size>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>364</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clean_left_button">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="icon">
+                <iconset resource="../images.qrc">
+                 <normaloff>:/res/cleaning.png</normaloff>:/res/cleaning.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
@@ -125,13 +162,67 @@
        </item>
        <item>
         <widget class="QFrame" name="right_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QFrame" name="clean_frame_2">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>60</height>
+             </size>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>364</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clean_right_button">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="../images.qrc">
+                 <normaloff>:/res/cleaning.png</normaloff>:/res/cleaning.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QFrame" name="combo_box_frame">
             <property name="maximumSize">
@@ -139,12 +230,6 @@
               <width>16777215</width>
               <height>25</height>
              </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <property name="leftMargin">
@@ -204,12 +289,6 @@
         <width>16777215</width>
         <height>60</height>
        </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
@@ -312,12 +391,6 @@
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
         <widget class="QFrame" name="table_widgets_container">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <property name="spacing">
            <number>0</number>
@@ -336,12 +409,6 @@
           </property>
           <item>
            <widget class="QFrame" name="table_left">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
             <layout class="QVBoxLayout" name="verticalLayout_9">
              <property name="leftMargin">
               <number>0</number>
@@ -355,44 +422,21 @@
              </item>
              <item>
               <widget class="QTableWidget" name="csv_table">
+               <property name="sizeAdjustPolicy">
+                <enum>QAbstractScrollArea::AdjustToContents</enum>
+               </property>
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
                <property name="gridStyle">
                 <enum>Qt::DashLine</enum>
                </property>
-               <row>
-                <property name="text">
-                 <string>Fila 1</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>Fila 2</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>Fila 3</string>
-                </property>
-               </row>
-               <column>
-                <property name="text">
-                 <string>Columna 1</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Columna 2</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Columna 3</string>
-                </property>
-               </column>
-               <item row="0" column="0">
-                <property name="text">
-                 <string/>
-                </property>
-               </item>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
               </widget>
              </item>
             </layout>
@@ -400,12 +444,6 @@
           </item>
           <item>
            <widget class="QFrame" name="table_right">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
             <layout class="QVBoxLayout" name="verticalLayout_8">
              <item>
               <widget class="QLabel" name="mdb_table_label">
@@ -416,44 +454,18 @@
              </item>
              <item>
               <widget class="QTableWidget" name="mdb_table">
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
                <property name="gridStyle">
                 <enum>Qt::DashLine</enum>
                </property>
-               <row>
-                <property name="text">
-                 <string>Fila 1</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>Fila 2</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>Fila 3</string>
-                </property>
-               </row>
-               <column>
-                <property name="text">
-                 <string>Columna 1</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Columna 2</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Columna 3</string>
-                </property>
-               </column>
-               <item row="0" column="0">
-                <property name="text">
-                 <string/>
-                </property>
-               </item>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
               </widget>
              </item>
             </layout>

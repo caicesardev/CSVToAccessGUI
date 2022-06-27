@@ -1,6 +1,7 @@
 import sys
 import os
 import subprocess
+import pandas as pd
 
 from ui.ui_MainWindow import Ui_MainWindow
 
@@ -16,10 +17,10 @@ from PySide6.QtCore import (
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QWidget,
     QFrame,
     QLabel,
     QVBoxLayout,
+    QTableWidgetItem
 )
 
 __version__ = "1.0.0"
@@ -95,20 +96,36 @@ class CSVDroppableFrame(QFrame):
 
     def dropEvent(self, event) -> None:
         if event.mimeData().hasUrls:
-            event.setDropAction(Qt.CopyAction)
-            event.accept()
-            self.csv_file = event.mimeData().urls()[0].toLocalFile()
-            self.selected_csv_file_label.setText(f"""
-            <html>
-            <head/>
-                <body>
-                    <p>
-                    <span style=" color:#585858;">Archivo CSV seleccionado: {str(event.mimeData().urls()[0].toString().replace("file:///", ""))}</span>
-                    </p>
-                </body>
-            </html>
-            """)
+            # Checks if you are dropping a .csv file.
+            if event.mimeData().urls()[0].toLocalFile().endswith(".csv"):
+                event.setDropAction(Qt.CopyAction)
+                event.accept()
+                self.csv_file = event.mimeData().urls()[0].toLocalFile()
+                self.selected_csv_file_label.setText(f"""
+                <html>
+                <head/>
+                    <body>
+                        <p>
+                        <span style=" color:#585858;">Archivo CSV seleccionado: {self.csv_file}</span>
+                        </p>
+                    </body>
+                </html>
+                """)
+                self.populate_csv_table(self.csv_file)
         return super().dropEvent(event)
+
+    def populate_csv_table(self, csv_file):
+        csv_data = pd.read_csv(csv_file)
+        table = self.parent.csv_table
+        # table.resizeColumnsToContents()
+        # table.resizeRowsToContents()
+        table.setRowCount(len(csv_data))
+        table.setColumnCount(len(csv_data.columns))
+        table.setHorizontalHeaderLabels(csv_data.columns)
+        for i in range(len(csv_data)):
+            for j in range(len(csv_data.columns)):
+                table.setItem(i, j, QTableWidgetItem(
+                    str(csv_data.iat[i, j])))
 
 
 # MDBDroppableFrame
@@ -181,20 +198,21 @@ class MDBDroppableFrame(QFrame):
 
     def dropEvent(self, event) -> None:
         if event.mimeData().hasUrls:
-            event.setDropAction(Qt.CopyAction)
-            event.accept()
-            self.mdb_file = event.mimeData().urls()[0].toLocalFile()
-            self.selected_mdb_file_label.setText(f"""
-            <html>
-            <head/>
-                <body>
-                    <p>
-                    <span style=" color:#585858;">Archivo MDB seleccionado: {str(event.mimeData().urls()[0].toString().replace("file:///", ""))}</span>
-                    </p>
-                </body>
-            </html>
-            """)
-            self.parent.available_tables_combo.setEnabled(True)
+            if event.mimeData().urls()[0].toString().endswith(".accdb"):
+                event.setDropAction(Qt.CopyAction)
+                event.accept()
+                self.mdb_file = event.mimeData().urls()[0].toLocalFile()
+                self.selected_mdb_file_label.setText(f"""
+                <html>
+                <head/>
+                    <body>
+                        <p>
+                        <span style=" color:#585858;">Archivo MDB seleccionado: {self.mdb_file}</span>
+                        </p>
+                    </body>
+                </html>
+                """)
+                self.parent.available_tables_combo.setEnabled(True)
         return super().dropEvent(event)
 
 
@@ -209,13 +227,49 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set app settings.
         self.set_settings()
 
+    def init_ui(self):
+        self.setupUi(self)
+
         self.csv_droppable_frame = CSVDroppableFrame(self)
         self.verticalLayout.addWidget(self.csv_droppable_frame)
         self.mdb_droppable_frame = MDBDroppableFrame(self)
         self.verticalLayout_2.addWidget(self.mdb_droppable_frame)
 
-    def init_ui(self):
-        self.setupUi(self)
+        self.clean_left_button.clicked.connect(
+            lambda: self.clean_drop("left"))
+        self.clean_right_button.clicked.connect(
+            lambda: self.clean_drop("right"))
+
+    def clean_drop(self, frame):
+        if frame == "left":
+            self.csv_droppable_frame.selected_csv_file_label.setText(
+                """
+            <html>
+            <head/>
+                <body>
+                    <p>
+                    <span style=" color:#585858;">Archivo MDB seleccionado:</span>
+                    </p>
+                </body>
+            </html>
+            """)
+            self.csv_table.setRowCount(0)
+            self.csv_table.setColumnCount(0)
+            self.csv_table.resizeColumnsToContents()
+            self.csv_table.clear()
+        else:
+            self.mdb_droppable_frame.selected_mdb_file_label.setText(
+                """
+            <html>
+            <head/>
+                <body>
+                    <p>
+                    <span style=" color:#585858;">Archivo MDB seleccionado:</span>
+                    </p>
+                </body>
+            </html>
+            """)
+            self.mdb_table.setRowCount(0)
 
     def get_settings(self):
         self.w_attrib = QSettings("CSVToAccessGUI", "WindowAttributes")

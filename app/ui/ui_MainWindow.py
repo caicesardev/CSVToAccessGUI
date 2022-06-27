@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowNwXLaE.ui'
+## Form generated from reading UI file 'MainWindowljaoJe.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QMainWindow, QPlainTextEdit,
-    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
+    QFrame, QHBoxLayout, QHeaderView, QLabel,
+    QMainWindow, QPlainTextEdit, QPushButton, QSizePolicy,
+    QSpacerItem, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 import images_rc
 
 class Ui_MainWindow(object):
@@ -41,8 +42,6 @@ class Ui_MainWindow(object):
         self.title_frame = QFrame(self.centralwidget)
         self.title_frame.setObjectName(u"title_frame")
         self.title_frame.setMaximumSize(QSize(16777215, 100))
-        self.title_frame.setFrameShape(QFrame.StyledPanel)
-        self.title_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_6 = QVBoxLayout(self.title_frame)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.title_label = QLabel(self.title_frame)
@@ -70,16 +69,37 @@ class Ui_MainWindow(object):
         self.container_frame = QFrame(self.centralwidget)
         self.container_frame.setObjectName(u"container_frame")
         self.container_frame.setMinimumSize(QSize(0, 300))
-        self.container_frame.setFrameShape(QFrame.StyledPanel)
-        self.container_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.container_frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_frame = QFrame(self.container_frame)
         self.left_frame.setObjectName(u"left_frame")
-        self.left_frame.setFrameShape(QFrame.StyledPanel)
-        self.left_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout = QVBoxLayout(self.left_frame)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.clean_frame = QFrame(self.left_frame)
+        self.clean_frame.setObjectName(u"clean_frame")
+        self.clean_frame.setMaximumSize(QSize(16777215, 60))
+        self.horizontalLayout_5 = QHBoxLayout(self.clean_frame)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(-1, -1, 0, -1)
+        self.horizontalSpacer = QSpacerItem(364, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer)
+
+        self.clean_left_button = QPushButton(self.clean_frame)
+        self.clean_left_button.setObjectName(u"clean_left_button")
+        self.clean_left_button.setMinimumSize(QSize(0, 30))
+        self.clean_left_button.setCursor(QCursor(Qt.PointingHandCursor))
+        icon = QIcon()
+        icon.addFile(u":/res/cleaning.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.clean_left_button.setIcon(icon)
+        self.clean_left_button.setIconSize(QSize(32, 32))
+        self.clean_left_button.setFlat(True)
+
+        self.horizontalLayout_5.addWidget(self.clean_left_button)
+
+
+        self.verticalLayout.addWidget(self.clean_frame)
+
 
         self.horizontalLayout.addWidget(self.left_frame)
 
@@ -94,15 +114,35 @@ class Ui_MainWindow(object):
 
         self.right_frame = QFrame(self.container_frame)
         self.right_frame.setObjectName(u"right_frame")
-        self.right_frame.setFrameShape(QFrame.StyledPanel)
         self.right_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.right_frame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.clean_frame_2 = QFrame(self.right_frame)
+        self.clean_frame_2.setObjectName(u"clean_frame_2")
+        self.clean_frame_2.setMaximumSize(QSize(16777215, 60))
+        self.horizontalLayout_6 = QHBoxLayout(self.clean_frame_2)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(-1, -1, 0, -1)
+        self.horizontalSpacer_2 = QSpacerItem(364, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
+
+        self.clean_right_button = QPushButton(self.clean_frame_2)
+        self.clean_right_button.setObjectName(u"clean_right_button")
+        self.clean_right_button.setMinimumSize(QSize(0, 30))
+        self.clean_right_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.clean_right_button.setIcon(icon)
+        self.clean_right_button.setIconSize(QSize(32, 32))
+        self.clean_right_button.setFlat(True)
+
+        self.horizontalLayout_6.addWidget(self.clean_right_button)
+
+
+        self.verticalLayout_2.addWidget(self.clean_frame_2)
+
         self.combo_box_frame = QFrame(self.right_frame)
         self.combo_box_frame.setObjectName(u"combo_box_frame")
         self.combo_box_frame.setMaximumSize(QSize(16777215, 25))
-        self.combo_box_frame.setFrameShape(QFrame.StyledPanel)
-        self.combo_box_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.combo_box_frame)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -131,8 +171,6 @@ class Ui_MainWindow(object):
         self.buttons_frame = QFrame(self.centralwidget)
         self.buttons_frame.setObjectName(u"buttons_frame")
         self.buttons_frame.setMaximumSize(QSize(16777215, 60))
-        self.buttons_frame.setFrameShape(QFrame.StyledPanel)
-        self.buttons_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.buttons_frame)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.line = QFrame(self.buttons_frame)
@@ -150,9 +188,9 @@ class Ui_MainWindow(object):
         font3.setPointSize(10)
         self.dump_data_button.setFont(font3)
         self.dump_data_button.setCursor(QCursor(Qt.PointingHandCursor))
-        icon = QIcon()
-        icon.addFile(u":/res/conversion-settings.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.dump_data_button.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/res/conversion-settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.dump_data_button.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.dump_data_button)
 
@@ -162,10 +200,10 @@ class Ui_MainWindow(object):
         self.show_hide_details_button.setMaximumSize(QSize(300, 16777215))
         self.show_hide_details_button.setFont(font3)
         self.show_hide_details_button.setCursor(QCursor(Qt.PointingHandCursor))
-        icon1 = QIcon()
-        icon1.addFile(u":/res/down.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon1.addFile(u":/res/up.png", QSize(), QIcon.Normal, QIcon.On)
-        self.show_hide_details_button.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/res/down.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/res/up.png", QSize(), QIcon.Normal, QIcon.On)
+        self.show_hide_details_button.setIcon(icon2)
         self.show_hide_details_button.setCheckable(True)
 
         self.horizontalLayout_2.addWidget(self.show_hide_details_button)
@@ -187,16 +225,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.table_widgets_container = QFrame(self.details_frame)
         self.table_widgets_container.setObjectName(u"table_widgets_container")
-        self.table_widgets_container.setFrameShape(QFrame.StyledPanel)
-        self.table_widgets_container.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.table_widgets_container)
         self.horizontalLayout_4.setSpacing(0)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.table_left = QFrame(self.table_widgets_container)
         self.table_left.setObjectName(u"table_left")
-        self.table_left.setFrameShape(QFrame.StyledPanel)
-        self.table_left.setFrameShadow(QFrame.Raised)
         self.verticalLayout_9 = QVBoxLayout(self.table_left)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.verticalLayout_9.setContentsMargins(0, -1, -1, -1)
@@ -206,26 +240,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.csv_table_label)
 
         self.csv_table = QTableWidget(self.table_left)
-        if (self.csv_table.columnCount() < 3):
-            self.csv_table.setColumnCount(3)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.csv_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.csv_table.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.csv_table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        if (self.csv_table.rowCount() < 3):
-            self.csv_table.setRowCount(3)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.csv_table.setVerticalHeaderItem(0, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.csv_table.setVerticalHeaderItem(1, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.csv_table.setVerticalHeaderItem(2, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.csv_table.setItem(0, 0, __qtablewidgetitem6)
         self.csv_table.setObjectName(u"csv_table")
+        self.csv_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.csv_table.setAlternatingRowColors(True)
+        self.csv_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.csv_table.setGridStyle(Qt.DashLine)
+        self.csv_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_9.addWidget(self.csv_table)
 
@@ -234,8 +254,6 @@ class Ui_MainWindow(object):
 
         self.table_right = QFrame(self.table_widgets_container)
         self.table_right.setObjectName(u"table_right")
-        self.table_right.setFrameShape(QFrame.StyledPanel)
-        self.table_right.setFrameShadow(QFrame.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.table_right)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.mdb_table_label = QLabel(self.table_right)
@@ -244,26 +262,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.mdb_table_label)
 
         self.mdb_table = QTableWidget(self.table_right)
-        if (self.mdb_table.columnCount() < 3):
-            self.mdb_table.setColumnCount(3)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.mdb_table.setHorizontalHeaderItem(0, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.mdb_table.setHorizontalHeaderItem(1, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.mdb_table.setHorizontalHeaderItem(2, __qtablewidgetitem9)
-        if (self.mdb_table.rowCount() < 3):
-            self.mdb_table.setRowCount(3)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.mdb_table.setVerticalHeaderItem(0, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.mdb_table.setVerticalHeaderItem(1, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.mdb_table.setVerticalHeaderItem(2, __qtablewidgetitem12)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.mdb_table.setItem(0, 0, __qtablewidgetitem13)
         self.mdb_table.setObjectName(u"mdb_table")
+        self.mdb_table.setAlternatingRowColors(True)
+        self.mdb_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.mdb_table.setGridStyle(Qt.DashLine)
+        self.mdb_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_8.addWidget(self.mdb_table)
 
@@ -302,6 +305,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CSVToAccessGUI", None))
         self.title_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:20pt; color:#ff8e00;\">CSVToAccessGUI</span></p></body></html>", None))
         self.subtitle_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente</span></p></body></html>", None))
+        self.clean_right_button.setText("")
         self.selected_table_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Tabla seleccionada:</span></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.available_tables_combo.setToolTip(QCoreApplication.translate("MainWindow", u"Selecciona una tabla del archivo mdb", None))
@@ -315,41 +319,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.show_hide_details_button.setText(QCoreApplication.translate("MainWindow", u" Mostrar/Ocultar detalles", None))
         self.csv_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo CSV:", None))
-        ___qtablewidgetitem = self.csv_table.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Columna 1", None));
-        ___qtablewidgetitem1 = self.csv_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Columna 2", None));
-        ___qtablewidgetitem2 = self.csv_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Columna 3", None));
-        ___qtablewidgetitem3 = self.csv_table.verticalHeaderItem(0)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Fila 1", None));
-        ___qtablewidgetitem4 = self.csv_table.verticalHeaderItem(1)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Fila 2", None));
-        ___qtablewidgetitem5 = self.csv_table.verticalHeaderItem(2)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Fila 3", None));
-
-        __sortingEnabled = self.csv_table.isSortingEnabled()
-        self.csv_table.setSortingEnabled(False)
-        self.csv_table.setSortingEnabled(__sortingEnabled)
-
         self.mdb_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo MDB:", None))
-        ___qtablewidgetitem6 = self.mdb_table.horizontalHeaderItem(0)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Columna 1", None));
-        ___qtablewidgetitem7 = self.mdb_table.horizontalHeaderItem(1)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Columna 2", None));
-        ___qtablewidgetitem8 = self.mdb_table.horizontalHeaderItem(2)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Columna 3", None));
-        ___qtablewidgetitem9 = self.mdb_table.verticalHeaderItem(0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Fila 1", None));
-        ___qtablewidgetitem10 = self.mdb_table.verticalHeaderItem(1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Fila 2", None));
-        ___qtablewidgetitem11 = self.mdb_table.verticalHeaderItem(2)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Fila 3", None));
-
-        __sortingEnabled1 = self.mdb_table.isSortingEnabled()
-        self.mdb_table.setSortingEnabled(False)
-        self.mdb_table.setSortingEnabled(__sortingEnabled1)
-
         self.output_label.setText(QCoreApplication.translate("MainWindow", u"Output:", None))
     # retranslateUi
 
