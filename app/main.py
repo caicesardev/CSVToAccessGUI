@@ -5,6 +5,7 @@ import subprocess
 import pandas as pd
 import pyodbc
 import urllib
+import getpass
 
 from sqlalchemy import create_engine
 from datetime import datetime
@@ -79,8 +80,9 @@ class CSVDroppableFrame(QFrame):
         self.setCursor(Qt.DragCopyCursor)
 
     def mousePressEvent(self, event) -> None:
+        username = getpass.getuser()
         self.csv_mdb_path, _ = QFileDialog.getOpenFileName(
-            self, "Abrir", "", "Archivo CSV (*.csv)")
+            self, "Abrir", f"C:/users/{username}", "Archivo CSV (*.csv)")
         if self.csv_mdb_path == '' or not str(self.csv_mdb_path).endswith(".csv"):
             event.ignore()
             return
@@ -198,8 +200,9 @@ class MDBDroppableFrame(QFrame):
         self.setCursor(Qt.DragCopyCursor)
 
     def mousePressEvent(self, event) -> None:
+        username = getpass.getuser()
         self.mdb_file, _ = QFileDialog.getOpenFileName(
-            self, "Abrir", "", "Microsoft Access (*.accdb)")
+            self, "Abrir", f"C:/users/{username}", "Microsoft Access (*.accdb)")
         if self.mdb_file == '' or not str(self.mdb_file).endswith(".accdb"):
             event.ignore()
             return

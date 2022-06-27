@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>703</height>
+    <height>734</height>
    </rect>
   </property>
   <property name="font">
@@ -96,6 +96,9 @@
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>Acerca de/Ayuda</string>
+            </property>
             <property name="icon">
              <iconset resource="../images.qrc">
               <normaloff>:/res/question.png</normaloff>:/res/question.png</iconset>
@@ -115,6 +118,9 @@
            <widget class="QPushButton" name="settings_button">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Configuración</string>
             </property>
             <property name="icon">
              <iconset resource="../images.qrc">
@@ -618,6 +624,9 @@
               <family>Roboto</family>
              </font>
             </property>
+            <property name="toolTip">
+             <string>Activar scroll automático</string>
+            </property>
             <property name="text">
              <string>Scroll automático</string>
             </property>
@@ -630,6 +639,9 @@
            <widget class="QPushButton" name="clean_output_button">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Limpiar output</string>
             </property>
             <property name="text">
              <string/>
@@ -653,6 +665,9 @@
            <widget class="QPushButton" name="copy_output_button">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Copiar output</string>
             </property>
             <property name="text">
              <string/>
@@ -682,6 +697,9 @@
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Guardar output</string>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton#export_button {

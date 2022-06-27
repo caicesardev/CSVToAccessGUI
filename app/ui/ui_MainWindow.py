@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowlEoVKL.ui'
+## Form generated from reading UI file 'MainWindowFJxGdL.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1000, 703)
+        MainWindow.resize(1000, 734)
         font = QFont()
         font.setFamilies([u"Roboto"])
         font.setPointSize(10)
@@ -404,6 +404,12 @@ class Ui_MainWindow(object):
         self.title_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:20pt; color:#ff8e00;\">CSVToAccessGUI</span></p></body></html>", None))
         self.subtitle_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente</span></p></body></html>", None))
 #if QT_CONFIG(tooltip)
+        self.help_button.setToolTip(QCoreApplication.translate("MainWindow", u"Acerca de/Ayuda", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.settings_button.setToolTip(QCoreApplication.translate("MainWindow", u"Configuraci\u00f3n", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
         self.clean_left_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar input", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
@@ -425,9 +431,21 @@ class Ui_MainWindow(object):
         self.csv_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo CSV:", None))
         self.mdb_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo MDB:", None))
         self.output_label.setText(QCoreApplication.translate("MainWindow", u"Output:", None))
+#if QT_CONFIG(tooltip)
+        self.auto_scroll_checkbox.setToolTip(QCoreApplication.translate("MainWindow", u"Activar scroll autom\u00e1tico", None))
+#endif // QT_CONFIG(tooltip)
         self.auto_scroll_checkbox.setText(QCoreApplication.translate("MainWindow", u"Scroll autom\u00e1tico", None))
+#if QT_CONFIG(tooltip)
+        self.clean_output_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar output", None))
+#endif // QT_CONFIG(tooltip)
         self.clean_output_button.setText("")
+#if QT_CONFIG(tooltip)
+        self.copy_output_button.setToolTip(QCoreApplication.translate("MainWindow", u"Copiar output", None))
+#endif // QT_CONFIG(tooltip)
         self.copy_output_button.setText("")
+#if QT_CONFIG(tooltip)
+        self.export_button.setToolTip(QCoreApplication.translate("MainWindow", u"Guardar output", None))
+#endif // QT_CONFIG(tooltip)
         self.export_button.setText("")
     # retranslateUi
 
