@@ -1,4 +1,3 @@
-from threading import currentThread
 import sqlalchemy_access.pyodbc  # necessary import
 import sys
 import os
