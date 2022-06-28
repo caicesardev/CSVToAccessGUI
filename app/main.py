@@ -11,6 +11,8 @@ from sqlalchemy import create_engine
 from datetime import datetime
 
 from ui.ui_MainWindow import Ui_MainWindow
+from settings import Settings
+from about import About
 
 from PySide6.QtGui import QTextDocument, QTextCursor
 from PySide6.QtCore import (
@@ -317,12 +319,16 @@ class MDBDroppableFrame(QFrame):
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+
         self.init_ui()
+
         self.show_details = True
         # Get app settings.
         self.get_settings()
         # Set app settings.
         self.set_settings()
+        self.settings_widget = Settings()
+        self.about_widget = About()
 
         self.output.insertPlainText("--------- INIT APP ---------\n")
         self.output.insertPlainText(
@@ -348,6 +354,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.copy_output_button.clicked.connect(self.copy_output)
         self.export_button.clicked.connect(self.save_output)
         self.clean_output_button.clicked.connect(self.clean_output)
+        self.settings_button.clicked.connect(
+            lambda: self.settings_widget.show())
+        self.help_button.clicked.connect(lambda: self.about_widget.show())
 
     def dump_data(self):
         try:
