@@ -36,9 +36,11 @@ class Settings(QDialog, Ui_Settings):
     def accept(self):
         self.save()
         self.close()
+        self.parent.set_settings()
 
     def apply(self):
         self.save()
+        self.parent.set_settings()
 
     def save(self):
         self.app_settings.setValue(
@@ -48,10 +50,10 @@ class Settings(QDialog, Ui_Settings):
             "show_output",
             self.show_output_checkbox.isChecked())
         self.app_theme.setValue(
-            "light-theme",
+            "light_theme",
             self.defaulttheme_radiobtn.isChecked())
         self.app_theme.setValue(
-            "dark-theme",
+            "dark_theme",
             self.darktheme_radiobtn.isChecked())
         self.app_language.setValue("es_l", self.es_radiobtn.isChecked())
         self.app_language.setValue("ca_l", self.ca_radiobtn.isChecked())
@@ -69,10 +71,14 @@ class Settings(QDialog, Ui_Settings):
         # App Settings
         if self.app_settings.value("start_maximized") == "true":
             self.start_maximized_checkbox.setChecked(True)
-        elif self.app_settings.value("show_output") == "true":
+        else:
+            self.start_maximized_checkbox.setChecked(False)
+        if self.app_settings.value("show_output") == "true":
             self.show_output_checkbox.setChecked(True)
+        else:
+            self.show_output_checkbox.setChecked(False)
         # App Theme
-        if self.app_theme.value("light-theme") == "true":
+        if self.app_theme.value("light_theme") == "true":
             self.defaulttheme_radiobtn.setChecked(True)
         else:
             self.darktheme_radiobtn.setChecked(True)

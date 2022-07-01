@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowFJxGdL.ui'
+## Form generated from reading UI file 'MainWindowFdhmZa.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -33,9 +33,6 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setStyleSheet(u"QWidget#centralwidget {\n"
-"	background: white;\n"
-"}")
         self.verticalLayout_5 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_5.setSpacing(3)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -264,7 +261,9 @@ class Ui_MainWindow(object):
         self.details_frame.setObjectName(u"details_frame")
         self.details_frame.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout_7 = QVBoxLayout(self.details_frame)
+        self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(-1, 0, -1, 0)
         self.table_widgets_container = QFrame(self.details_frame)
         self.table_widgets_container.setObjectName(u"table_widgets_container")
         self.horizontalLayout_4 = QHBoxLayout(self.table_widgets_container)
@@ -283,6 +282,10 @@ class Ui_MainWindow(object):
 
         self.csv_table = QTableWidget(self.table_left)
         self.csv_table.setObjectName(u"csv_table")
+        self.csv_table.setMinimumSize(QSize(0, 110))
+        font5 = QFont()
+        font5.setFamilies([u"Roboto"])
+        self.csv_table.setFont(font5)
         self.csv_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.csv_table.setAlternatingRowColors(True)
         self.csv_table.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -304,10 +307,11 @@ class Ui_MainWindow(object):
 
         self.mdb_table = QTableWidget(self.table_right)
         self.mdb_table.setObjectName(u"mdb_table")
+        self.mdb_table.setMinimumSize(QSize(0, 110))
+        self.mdb_table.setFont(font5)
         self.mdb_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.mdb_table.setAlternatingRowColors(True)
         self.mdb_table.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.mdb_table.setGridStyle(Qt.DashLine)
         self.mdb_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_8.addWidget(self.mdb_table)
@@ -318,22 +322,28 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.table_widgets_container)
 
-        self.output_label = QLabel(self.details_frame)
+        self.output_container = QFrame(self.details_frame)
+        self.output_container.setObjectName(u"output_container")
+        self.verticalLayout_3 = QVBoxLayout(self.output_container)
+        self.verticalLayout_3.setSpacing(4)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.output_label = QLabel(self.output_container)
         self.output_label.setObjectName(u"output_label")
         self.output_label.setFont(font)
 
-        self.verticalLayout_7.addWidget(self.output_label)
+        self.verticalLayout_3.addWidget(self.output_label)
 
-        self.output = QPlainTextEdit(self.details_frame)
+        self.output = QPlainTextEdit(self.output_container)
         self.output.setObjectName(u"output")
         self.output.setMaximumSize(QSize(16777215, 200))
         self.output.setFont(font)
         self.output.setUndoRedoEnabled(False)
         self.output.setReadOnly(True)
 
-        self.verticalLayout_7.addWidget(self.output)
+        self.verticalLayout_3.addWidget(self.output)
 
-        self.output_buttons_frame = QFrame(self.details_frame)
+        self.output_buttons_frame = QFrame(self.output_container)
         self.output_buttons_frame.setObjectName(u"output_buttons_frame")
         self.horizontalLayout_7 = QHBoxLayout(self.output_buttons_frame)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
@@ -344,8 +354,6 @@ class Ui_MainWindow(object):
 
         self.auto_scroll_checkbox = QCheckBox(self.output_buttons_frame)
         self.auto_scroll_checkbox.setObjectName(u"auto_scroll_checkbox")
-        font5 = QFont()
-        font5.setFamilies([u"Roboto"])
         self.auto_scroll_checkbox.setFont(font5)
         self.auto_scroll_checkbox.setChecked(True)
 
@@ -387,7 +395,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.export_button)
 
 
-        self.verticalLayout_7.addWidget(self.output_buttons_frame)
+        self.verticalLayout_3.addWidget(self.output_buttons_frame)
+
+
+        self.verticalLayout_7.addWidget(self.output_container)
 
 
         self.verticalLayout_5.addWidget(self.details_frame)
@@ -401,8 +412,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CSVToAccessGUI", None))
-        self.title_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:20pt; color:#ff8e00;\">CSVToAccessGUI</span></p></body></html>", None))
-        self.subtitle_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente</span></p></body></html>", None))
+        self.title_label.setText(QCoreApplication.translate("MainWindow", u"CSVToAccessGUI", None))
+        self.subtitle_label.setText(QCoreApplication.translate("MainWindow", u"Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente", None))
 #if QT_CONFIG(tooltip)
         self.help_button.setToolTip(QCoreApplication.translate("MainWindow", u"Acerca de/Ayuda", None))
 #endif // QT_CONFIG(tooltip)
@@ -416,7 +427,7 @@ class Ui_MainWindow(object):
         self.clean_right_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar input", None))
 #endif // QT_CONFIG(tooltip)
         self.clean_right_button.setText("")
-        self.selected_table_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#585858;\">Tabla seleccionada:</span></p></body></html>", None))
+        self.selected_table_label.setText(QCoreApplication.translate("MainWindow", u"Tabla seleccionada:", None))
 #if QT_CONFIG(tooltip)
         self.available_tables_combo.setToolTip(QCoreApplication.translate("MainWindow", u"Selecciona una tabla del archivo mdb", None))
 #endif // QT_CONFIG(tooltip)

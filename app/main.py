@@ -59,23 +59,12 @@ class CSVDroppableFrame(QFrame):
         """)
         self.setLayout(self.verticalLayout_3)
         self.csv_title_label = QLabel()
-        self.csv_title_label.setText(
-            """
-        <html>
-        <head/>
-            <body>
-                <p>
-                    <span style=" color:#55557f;">Arrastra o selecciona archivo CSV</span>
-                </p>
-            </body>
-        </html>
-        """)
-        self.csv_title_label.setStyleSheet(
-            "QLabel {font-size: 17px; font-weight: bold;}")
+        self.csv_title_label.setObjectName("csv_title_label")
+        self.csv_title_label.setText("Arrastra o selecciona archivo CSV")
         self.csv_title_label.setAlignment(Qt.AlignCenter)
         self.selected_csv_file_label = QLabel()
+        self.selected_csv_file_label.setObjectName("selected_csv_file_label")
         self.selected_csv_file_label.setMaximumHeight(35)
-        self.selected_csv_file_label.setStyleSheet("QLabel {font-size: 13px;}")
         self.selected_csv_file_label.setWordWrap(True)
         self.verticalLayout_3.addWidget(self.csv_title_label)
         self.verticalLayout_3.addWidget(self.selected_csv_file_label)
@@ -89,16 +78,7 @@ class CSVDroppableFrame(QFrame):
             event.ignore()
             return
         else:
-            self.selected_csv_file_label.setText(f"""
-            <html>
-            <head/>
-                <body>
-                    <p>
-                    <span style=" color:#585858;">{self.csv_mdb_path}</span>
-                    </p>
-                </body>
-            </html>
-            """)
+            self.selected_csv_file_label.setText(f"{self.csv_mdb_path}")
             self.populate_csv_table(self.csv_mdb_path)
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
@@ -129,16 +109,7 @@ class CSVDroppableFrame(QFrame):
                 event.setDropAction(Qt.CopyAction)
                 event.accept()
                 self.csv_file = event.mimeData().urls()[0].toLocalFile()
-                self.selected_csv_file_label.setText(f"""
-                <html>
-                <head/>
-                    <body>
-                        <p>
-                        <span style=" color:#585858;">{self.csv_file}</span>
-                        </p>
-                    </body>
-                </html>
-                """)
+                self.selected_csv_file_label.setText(f"{self.csv_file}")
                 self.populate_csv_table(self.csv_file)
                 now = datetime.now()
                 current_time = now.strftime("%H:%M:%S")
@@ -170,30 +141,13 @@ class MDBDroppableFrame(QFrame):
     def init_ui(self):
         self.verticalLayout_3 = QVBoxLayout()
         self.setObjectName("mdb_droppable_frame")
-        self.setStyleSheet(
-            """
-        QFrame#mdb_droppable_frame {
-        	border: 2px dotted grey;
-	        padding: 20px;
-        }
-        """)
         self.setLayout(self.verticalLayout_3)
         self.mdb_title_label = QLabel()
-        self.mdb_title_label.setText(
-            """
-        <html>
-        <head/>
-            <body>
-                <p>
-                    <span style=" color:#55557f;">Arrastra o selecciona archivo MDB</span>
-                </p>
-            </body>
-        </html>
-        """)
-        self.mdb_title_label.setStyleSheet(
-            "QLabel {font-size: 17px; font-weight: bold;}")
+        self.mdb_title_label.setObjectName("mdb_title_label")
+        self.mdb_title_label.setText("Arrastra o selecciona archivo MDB")
         self.mdb_title_label.setAlignment(Qt.AlignCenter)
         self.selected_mdb_file_label = QLabel()
+        self.selected_mdb_file_label.setObjectName("selected_mdb_file_label")
         self.selected_mdb_file_label.setMaximumHeight(35)
         self.selected_mdb_file_label.setStyleSheet("QLabel {font-size: 13px;}")
         self.selected_mdb_file_label.setWordWrap(True)
@@ -209,16 +163,7 @@ class MDBDroppableFrame(QFrame):
             event.ignore()
             return
         else:
-            self.selected_mdb_file_label.setText(f"""
-            <html>
-            <head/>
-                <body>
-                    <p>
-                    <span style=" color:#585858;">{self.mdb_file}</span>
-                    </p>
-                </body>
-            </html>
-            """)
+            self.selected_mdb_file_label.setText(f"{self.mdb_file}")
             self.parent.available_tables_combo.setEnabled(True)
             con = pyodbc.connect(
                 r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
@@ -263,16 +208,7 @@ class MDBDroppableFrame(QFrame):
                 event.setDropAction(Qt.CopyAction)
                 event.accept()
                 self.mdb_file = event.mimeData().urls()[0].toLocalFile()
-                self.selected_mdb_file_label.setText(f"""
-                <html>
-                <head/>
-                    <body>
-                        <p>
-                        <span style=" color:#585858;">{self.mdb_file}</span>
-                        </p>
-                    </body>
-                </html>
-                """)
+                self.selected_mdb_file_label.setText(f"{self.mdb_file}")
                 self.parent.available_tables_combo.setEnabled(True)
                 con = pyodbc.connect(
                     r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
@@ -327,6 +263,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.get_settings()
         # Set app settings.
         self.set_settings()
+
+        if self.app_settings.value("start_maximized", "false") == "true":
+            self.showMaximized()
+        else:
+            self.showNormal()
 
         self.output.insertPlainText("--------- INIT APP ---------\n")
         self.output.insertPlainText(
@@ -440,13 +381,156 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.show_details = True
 
     def get_settings(self):
+        # MainWindow settings
         self.w_attrib = QSettings("CSVToAccessGUI", "WindowAttributes")
+        # App settings
+        self.app_settings = QSettings("CSVToAccessGUI", "AppSettings")
+        self.app_theme = QSettings("CSVToAccessGUI", "AppTheme")
+        self.app_language = QSettings("CSVToAccessGUI", "AppLanguage")
 
     def set_settings(self):
-        print("Set MainWindow settings")
         # Initial window size/pos last saved. Use default values for first time.
         self.resize(self.w_attrib.value("size", QSize(1000, 600)))
         self.move(self.w_attrib.value("pos", QPoint(50, 50)))
+        # App settings
+        if self.app_settings.value("show_output", "true") == "true":
+            self.output_container.show()
+        else:
+            self.output_container.hide()
+        # App theme
+        if self.app_theme.value("light_theme", "true") == "true":
+            # Main
+            self.setStyleSheet("""
+                QWidget#centralwidget {
+                    background: white;
+                }
+                #title_label {
+                    font-size: 28px; 
+                    color: #ff8e00;
+                }
+                #subtitle_label {
+                    font-size: 14px;
+                    color: #585858;
+                }
+                #selected_table_label {
+                    color: #585858;
+                }
+            """)
+            # CSV Frame
+            self.csv_droppable_frame.setStyleSheet("""
+                QFrame#csv_droppable_frame {
+                    border: 2px dotted grey;
+                    padding: 20px;
+                }
+                QLabel#csv_title_label {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: #55557f;
+                }
+            """)
+            # MDB Frame
+            self.mdb_droppable_frame.setStyleSheet("""
+                QFrame#mdb_droppable_frame {
+                    border: 2px dotted grey;
+                    padding: 20px;
+                }
+                QLabel#mdb_title_label {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: #55557f;
+                }
+            """)
+        # DARK THEME
+        else:
+            # Main
+            self.setStyleSheet("""
+                QWidget#centralwidget {
+                    background: #292929;
+                }
+                #title_label {
+                    font-size: 28px; 
+                    color: white;
+                }
+                #subtitle_label {
+                    font-size: 14px;
+                    color: #c2c2c2;
+                }
+                #selected_table_label, 
+                #csv_table_label, 
+                #mdb_table_label,
+                #output_label,
+                #auto_scroll_checkbox {
+                    color: white;
+                }
+                QComboBox#available_tables_combo {
+                    background: #808080;
+                    color: white;
+                    border: 1px solid #cccccc;
+                    border-radius: 1.5px;
+                }
+                QComboBox::drop-down#available_tables_combo {
+                    background: #808080;
+                }
+                QComboBox QAbstractItemView {
+                    background: #a6a6a6;
+                    color: white;
+                }
+                QComboBox::down-arrow {
+                    image: url(../res/down.png);
+                    width: 12px;
+                    height: 12px;
+                }
+                #csv_table, 
+                #mdb_table {
+                    background: #a6a6a6;
+                    border: 1px solid #cccccc;
+                }
+                QHeaderView::section {
+                    background: #a6a6a6;
+                    color: white;
+                    border: 0px solid #E0DDDC;
+                    border-right: 1px solid #8d8d8d;
+                    height: 20px;
+                }
+                QPlainTextEdit#output {
+                    color: white;
+                    background: #262626;
+                    border: 1px solid grey;
+                    border-radius: 4px;
+                }
+            """)
+            # CSV Frame
+            self.csv_droppable_frame.setStyleSheet("""
+                QFrame#csv_droppable_frame {
+                    border: 2px dotted grey;
+                    padding: 20px;
+                }
+                QLabel#csv_title_label {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: whitesmoke;
+                }
+                QLabel#selected_csv_file_label {
+                    font-size: 13px;
+                    color: whitesmoke;
+                }
+            """)
+            # MDB Frame
+            self.mdb_droppable_frame.setStyleSheet("""
+                QFrame#mdb_droppable_frame {
+                    border: 2px dotted grey;
+                    padding: 20px;
+                }
+                QLabel#mdb_title_label {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: whitesmoke;
+                }
+                QLabel#selected_mdb_file_label {
+                    font-size: 13px;
+                    color: whitesmoke;
+                }
+            """)
 
     # Event that is called when trying to exit the program.
     def closeEvent(self, event) -> None:
