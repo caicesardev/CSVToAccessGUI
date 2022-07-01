@@ -327,8 +327,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.get_settings()
         # Set app settings.
         self.set_settings()
-        self.settings_widget = Settings()
-        self.about_widget = About()
 
         self.output.insertPlainText("--------- INIT APP ---------\n")
         self.output.insertPlainText(
@@ -354,9 +352,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.copy_output_button.clicked.connect(self.copy_output)
         self.export_button.clicked.connect(self.save_output)
         self.clean_output_button.clicked.connect(self.clean_output)
-        self.settings_button.clicked.connect(
-            lambda: self.settings_widget.show())
-        self.help_button.clicked.connect(lambda: self.about_widget.show())
+        self.settings_button.clicked.connect(lambda: Settings(self))
+        self.help_button.clicked.connect(lambda: About(self))
 
     def dump_data(self):
         try:
@@ -446,14 +443,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.w_attrib = QSettings("CSVToAccessGUI", "WindowAttributes")
 
     def set_settings(self):
+        print("Set MainWindow settings")
         # Initial window size/pos last saved. Use default values for first time.
         self.resize(self.w_attrib.value("size", QSize(1000, 600)))
         self.move(self.w_attrib.value("pos", QPoint(50, 50)))
-
-    def on_restart(self):
-        self.close()
-        subprocess.Popen([sys.executable, "./main.py"])
-        os.system('cls' if os.name == 'nt' else 'clear')
 
     # Event that is called when trying to exit the program.
     def closeEvent(self, event) -> None:

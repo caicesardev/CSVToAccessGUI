@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'SettingsXyhHeB.ui'
+## Form generated from reading UI file 'SettingsxEOjuY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -15,23 +15,24 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QPushButton,
-    QRadioButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QFrame,
+    QGridLayout, QGroupBox, QHBoxLayout, QLabel,
+    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout)
+import images_rc
 import images_rc
 
 class Ui_Settings(object):
     def setupUi(self, Settings):
         if not Settings.objectName():
             Settings.setObjectName(u"Settings")
-        Settings.setWindowModality(Qt.ApplicationModal)
-        Settings.resize(600, 400)
+        Settings.resize(575, 400)
         Settings.setMaximumSize(QSize(800, 400))
         font = QFont()
         font.setFamilies([u"Roboto"])
         font.setPointSize(10)
         Settings.setFont(font)
+        Settings.setModal(True)
         self.verticalLayout = QVBoxLayout(Settings)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")

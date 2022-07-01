@@ -6,32 +6,32 @@ from PySide6.QtCore import (
     QLibraryInfo,
     QLocale,
     QTranslator,
+    QSettings,
 )
 from PySide6.QtWidgets import (
     QApplication,
-    QWidget,
+    QDialog,
 )
 
 __version__ = "1.0.0"
 
 
 # Settings.
-class Settings(QWidget, Ui_Settings):
-    def __init__(self):
-        super(Settings, self).__init__()
+class Settings(QDialog, Ui_Settings):
+    def __init__(self, parent=None):
+        super(Settings, self).__init__(parent)
 
+        self.parent = parent
         self.init_ui()
         self.get_settings()
         self.set_settings()
 
     def init_ui(self):
         self.setupUi(self)
+        self.show()
         self.accept_button.clicked.connect(self.accept)
         self.apply_button.clicked.connect(self.apply)
         self.cancel_button.clicked.connect(self.cancel)
-
-    def save(self):
-        pass
 
     def accept(self):
         self.save()
@@ -40,14 +40,49 @@ class Settings(QWidget, Ui_Settings):
     def apply(self):
         self.save()
 
+    def save(self):
+        self.app_settings.setValue(
+            "start_maximized",
+            self.start_maximized_checkbox.isChecked())
+        self.app_settings.setValue(
+            "show_output",
+            self.show_output_checkbox.isChecked())
+        self.app_theme.setValue(
+            "light-theme",
+            self.defaulttheme_radiobtn.isChecked())
+        self.app_theme.setValue(
+            "dark-theme",
+            self.darktheme_radiobtn.isChecked())
+        self.app_language.setValue("es_l", self.es_radiobtn.isChecked())
+        self.app_language.setValue("ca_l", self.ca_radiobtn.isChecked())
+        self.app_language.setValue("en_l", self.en_radiobtn.isChecked())
+
     def cancel(self):
         self.close()
 
     def get_settings(self):
-        pass
+        self.app_settings = QSettings("CSVToAccessGUI", "AppSettings")
+        self.app_theme = QSettings("CSVToAccessGUI", "AppTheme")
+        self.app_language = QSettings("CSVToAccessGUI", "AppLanguage")
 
     def set_settings(self):
-        pass
+        # App Settings
+        if self.app_settings.value("start_maximized") == "true":
+            self.start_maximized_checkbox.setChecked(True)
+        elif self.app_settings.value("show_output") == "true":
+            self.show_output_checkbox.setChecked(True)
+        # App Theme
+        if self.app_theme.value("light-theme") == "true":
+            self.defaulttheme_radiobtn.setChecked(True)
+        else:
+            self.darktheme_radiobtn.setChecked(True)
+        # App Lang
+        if self.app_language.value("es_l") == "true":
+            self.es_radiobtn.setChecked(True)
+        elif self.app_language.value("ca_l") == "true":
+            self.ca_radiobtn.setChecked(True)
+        else:
+            self.en_radiobtn.setChecked(True)
 
 
 def main():

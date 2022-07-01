@@ -9,20 +9,22 @@ from PySide6.QtCore import (
 )
 from PySide6.QtWidgets import (
     QApplication,
-    QWidget,
+    QDialog,
 )
 
 __version__ = "1.0.0"
 
 
 # Settings.
-class About(QWidget, Ui_About):
-    def __init__(self):
-        super(About, self).__init__()
+class About(QDialog, Ui_About):
+    def __init__(self, parent=None):
+        super(About, self).__init__(parent)
         self.init_ui()
+        self.parent = parent
 
     def init_ui(self):
         self.setupUi(self)
+        self.show()
         self.about_qt_button.clicked.connect(QApplication.aboutQt)
         self.accept_button.clicked.connect(self.close)
 
