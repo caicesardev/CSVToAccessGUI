@@ -60,7 +60,8 @@ class CSVDroppableFrame(QFrame):
         self.setLayout(self.verticalLayout_3)
         self.csv_title_label = QLabel()
         self.csv_title_label.setObjectName("csv_title_label")
-        self.csv_title_label.setText("Arrastra o selecciona archivo CSV")
+        self.csv_title_label.setText(
+            self.tr(u"Arrastra o selecciona archivo CSV"))
         self.csv_title_label.setAlignment(Qt.AlignCenter)
         self.selected_csv_file_label = QLabel()
         self.selected_csv_file_label.setObjectName("selected_csv_file_label")
@@ -73,7 +74,7 @@ class CSVDroppableFrame(QFrame):
     def mousePressEvent(self, event) -> None:
         username = getpass.getuser()
         self.csv_mdb_path, _ = QFileDialog.getOpenFileName(
-            self, "Abrir", f"C:/users/{username}", "Archivo CSV (*.csv)")
+            self, self.tr(u"Abrir"), f"C:/users/{username}", self.tr(u"Archivo CSV (*.csv)"))
         if self.csv_mdb_path == '' or not str(self.csv_mdb_path).endswith(".csv"):
             event.ignore()
             return
@@ -144,12 +145,12 @@ class MDBDroppableFrame(QFrame):
         self.setLayout(self.verticalLayout_3)
         self.mdb_title_label = QLabel()
         self.mdb_title_label.setObjectName("mdb_title_label")
-        self.mdb_title_label.setText("Arrastra o selecciona archivo MDB")
+        self.mdb_title_label.setText(
+            self.tr("Arrastra o selecciona archivo MDB"))
         self.mdb_title_label.setAlignment(Qt.AlignCenter)
         self.selected_mdb_file_label = QLabel()
         self.selected_mdb_file_label.setObjectName("selected_mdb_file_label")
         self.selected_mdb_file_label.setMaximumHeight(35)
-        self.selected_mdb_file_label.setStyleSheet("QLabel {font-size: 13px;}")
         self.selected_mdb_file_label.setWordWrap(True)
         self.verticalLayout_3.addWidget(self.mdb_title_label)
         self.verticalLayout_3.addWidget(self.selected_mdb_file_label)
@@ -158,7 +159,7 @@ class MDBDroppableFrame(QFrame):
     def mousePressEvent(self, event) -> None:
         username = getpass.getuser()
         self.mdb_file, _ = QFileDialog.getOpenFileName(
-            self, "Abrir", f"C:/users/{username}", "Microsoft Access (*.accdb)")
+            self, self.tr(u"Abrir"), f"C:/users/{username}", "Microsoft Access (*.accdb)")
         if self.mdb_file == '' or not str(self.mdb_file).endswith(".accdb"):
             event.ignore()
             return
@@ -309,7 +310,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # If the two file exist.
             if csv_file and mdb_file:
                 ret = QMessageBox.question(
-                    self, "Confirmar acción", f"¿Seguro que quieres realizar esta acción? Esto podría sobreescribir todos los datos de la tabla ('{self.available_tables_combo.currentText()}').")
+                    self, self.tr(u"Confirmar acción"), self.tr(f"¿Seguro que quieres realizar esta acción? Esto podría sobreescribir todos los datos de la tabla ('{self.available_tables_combo.currentText()}')."))
                 if ret == QMessageBox.Yes:
                     df = pd.read_csv(csv_file)
                     table = self.available_tables_combo.currentText()
@@ -343,7 +344,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def save_output(self):
         self.path, _ = QFileDialog.getSaveFileName(
-            self, "Guardar como", "output.txt", "Documentos de texto (*.txt)",)
+            self, self.tr(u"Guardar como"), "output.txt", self.tr(u"Documentos de texto (*.txt)"),)
         if self.path == '':
             return
         text = self.output.toPlainText()
@@ -353,7 +354,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             print(e)
             QMessageBox.critical(
-                self, "Error de guardado", f"No se ha podido guardar el archivo en {self.path}")
+                self, self.tr(u"Error de guardado"), self.tr(f"No se ha podido guardar el archivo en {self.path}"))
 
     def clean_drop(self, frame):
         if frame == "left":
@@ -545,6 +546,7 @@ def main():
     translator = QTranslator()
     translator.load("qtbase_" + QLocale.system().name(),
                     QLibraryInfo.location(QLibraryInfo.TranslationsPath))
+    # translator.load("en_GB") <-- To apply translation from .qm file
     app.installTranslator(translator)
     gui = MainWindow()
     gui.show()
