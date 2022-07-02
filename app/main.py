@@ -1,7 +1,5 @@
 import sqlalchemy_access.pyodbc  # necessary import
 import sys
-import os
-import subprocess
 import pandas as pd
 import pyodbc
 import urllib
