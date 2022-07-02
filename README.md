@@ -1,3 +1,3 @@
 # CSVToAccessGUI
 
-Graphical interface for CSVToAccess python script
+Graphical interface for CSVToAccess python script.
