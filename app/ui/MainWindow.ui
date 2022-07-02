@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>CSVToAccessGUI</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../images.qrc">
+    <normaloff>:/res/convert.png</normaloff>:/res/convert.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <property name="spacing">
@@ -38,6 +42,7 @@
          <property name="font">
           <font>
            <family>Segoe UI Black</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -395,6 +400,7 @@
          </property>
          <property name="font">
           <font>
+           <family>Roboto</family>
            <pointsize>10</pointsize>
           </font>
          </property>
@@ -429,6 +435,7 @@
          </property>
          <property name="font">
           <font>
+           <family>Roboto</family>
            <pointsize>10</pointsize>
           </font>
          </property>
@@ -521,6 +528,7 @@
                <property name="font">
                 <font>
                  <family>Roboto</family>
+                 <pointsize>10</pointsize>
                 </font>
                </property>
                <property name="sizeAdjustPolicy">
@@ -561,6 +569,7 @@
                <property name="font">
                 <font>
                  <family>Roboto</family>
+                 <pointsize>10</pointsize>
                 </font>
                </property>
                <property name="sizeAdjustPolicy">
@@ -663,6 +672,7 @@
                <property name="font">
                 <font>
                  <family>Roboto</family>
+                 <pointsize>10</pointsize>
                 </font>
                </property>
                <property name="toolTip">

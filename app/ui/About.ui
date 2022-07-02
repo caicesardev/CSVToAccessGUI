@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>About</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../images.qrc">
+    <normaloff>:/res/convert.png</normaloff>:/res/convert.png</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -502,7 +506,7 @@ p, li { white-space: pre-wrap; }
  </widget>
  <resources>
   <include location="../images.qrc"/>
-  <include location="../../../PyDownloader/env/Lib/site-packages/images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections/>
 </ui>

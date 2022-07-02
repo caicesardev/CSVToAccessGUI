@@ -9,5 +9,6 @@
     <file>../res/copy.png</file>
     <file>../res/gear.png</file>
     <file>../res/question.png</file>
+    <file>../res/convert.png</file>
   </qresource>
 </RCC>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'AboutPooXwO.ui'
+## Form generated from reading UI file 'AboutwkgwBW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -32,6 +32,9 @@ class Ui_About(object):
         font.setFamilies([u"Roboto"])
         font.setPointSize(10)
         About.setFont(font)
+        icon = QIcon()
+        icon.addFile(u":/res/convert.png", QSize(), QIcon.Normal, QIcon.Off)
+        About.setWindowIcon(icon)
         About.setModal(True)
         self.verticalLayout = QVBoxLayout(About)
         self.verticalLayout.setSpacing(0)

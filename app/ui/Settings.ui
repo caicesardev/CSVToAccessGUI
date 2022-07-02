@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../images.qrc">
+    <normaloff>:/res/convert.png</normaloff>:/res/convert.png</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
