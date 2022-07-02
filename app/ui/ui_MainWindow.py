@@ -1,26 +1,27 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowFdhmZa.ui'
+# Form generated from reading UI file 'MainWindowFdhmZa.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.1
+# Created by: Qt User Interface Compiler version 6.2.1
 ##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
+# WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
+                            QMetaObject, QObject, QPoint, QRect,
+                            QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+                           QFont, QFontDatabase, QGradient, QIcon,
+                           QImage, QKeySequence, QLinearGradient, QPainter,
+                           QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
-    QComboBox, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QMainWindow, QPlainTextEdit, QPushButton,
-    QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+                               QComboBox, QFrame, QHBoxLayout, QHeaderView,
+                               QLabel, QMainWindow, QPlainTextEdit, QPushButton,
+                               QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
+                               QVBoxLayout, QWidget)
 import images_rc
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -66,7 +67,8 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalSpacer_4 = QSpacerItem(865, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(
+            865, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer_4)
 
@@ -92,9 +94,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addWidget(self.settings_button)
 
-
         self.verticalLayout_6.addWidget(self.frame)
-
 
         self.verticalLayout_5.addWidget(self.title_frame)
 
@@ -113,7 +113,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5 = QHBoxLayout(self.clean_frame)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(-1, -1, 0, -1)
-        self.horizontalSpacer = QSpacerItem(364, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(
+            364, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_5.addItem(self.horizontalSpacer)
 
@@ -129,9 +130,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.clean_left_button)
 
-
         self.verticalLayout.addWidget(self.clean_frame)
-
 
         self.horizontalLayout.addWidget(self.left_frame)
 
@@ -155,7 +154,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6 = QHBoxLayout(self.clean_frame_2)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(-1, -1, 0, -1)
-        self.horizontalSpacer_2 = QSpacerItem(364, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(
+            364, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
 
@@ -168,7 +168,6 @@ class Ui_MainWindow(object):
         self.clean_right_button.setFlat(True)
 
         self.horizontalLayout_6.addWidget(self.clean_right_button)
-
 
         self.verticalLayout_2.addWidget(self.clean_frame_2)
 
@@ -195,9 +194,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.available_tables_combo)
 
-
         self.verticalLayout_2.addWidget(self.combo_box_frame)
-
 
         self.horizontalLayout.addWidget(self.right_frame)
 
@@ -228,13 +225,15 @@ class Ui_MainWindow(object):
         self.dump_data_button.setFont(font4)
         self.dump_data_button.setCursor(QCursor(Qt.PointingHandCursor))
         icon3 = QIcon()
-        icon3.addFile(u":/res/conversion-settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u":/res/conversion-settings.png",
+                      QSize(), QIcon.Normal, QIcon.Off)
         self.dump_data_button.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.dump_data_button)
 
         self.show_hide_details_button = QPushButton(self.buttons_frame)
-        self.show_hide_details_button.setObjectName(u"show_hide_details_button")
+        self.show_hide_details_button.setObjectName(
+            u"show_hide_details_button")
         self.show_hide_details_button.setMinimumSize(QSize(0, 35))
         self.show_hide_details_button.setMaximumSize(QSize(300, 16777215))
         self.show_hide_details_button.setFont(font4)
@@ -253,7 +252,6 @@ class Ui_MainWindow(object):
         self.line_2.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_2.addWidget(self.line_2)
-
 
         self.verticalLayout_5.addWidget(self.buttons_frame)
 
@@ -286,13 +284,13 @@ class Ui_MainWindow(object):
         font5 = QFont()
         font5.setFamilies([u"Roboto"])
         self.csv_table.setFont(font5)
-        self.csv_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.csv_table.setSizeAdjustPolicy(
+            QAbstractScrollArea.AdjustToContents)
         self.csv_table.setAlternatingRowColors(True)
         self.csv_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.csv_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_9.addWidget(self.csv_table)
-
 
         self.horizontalLayout_4.addWidget(self.table_left)
 
@@ -309,16 +307,15 @@ class Ui_MainWindow(object):
         self.mdb_table.setObjectName(u"mdb_table")
         self.mdb_table.setMinimumSize(QSize(0, 110))
         self.mdb_table.setFont(font5)
-        self.mdb_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.mdb_table.setSizeAdjustPolicy(
+            QAbstractScrollArea.AdjustToContents)
         self.mdb_table.setAlternatingRowColors(True)
         self.mdb_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.mdb_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_8.addWidget(self.mdb_table)
 
-
         self.horizontalLayout_4.addWidget(self.table_right)
-
 
         self.verticalLayout_7.addWidget(self.table_widgets_container)
 
@@ -348,7 +345,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7 = QHBoxLayout(self.output_buttons_frame)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, -1, 0, -1)
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(
+            40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer_3)
 
@@ -384,8 +382,8 @@ class Ui_MainWindow(object):
         self.export_button.setMinimumSize(QSize(0, 0))
         self.export_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.export_button.setStyleSheet(u"QPushButton#export_button {\n"
-"	padding: 5px;\n"
-"}")
+                                         "	padding: 5px;\n"
+                                         "}")
         icon6 = QIcon()
         icon6.addFile(u":/res/save.png", QSize(), QIcon.Normal, QIcon.Off)
         self.export_button.setIcon(icon6)
@@ -394,12 +392,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.export_button)
 
-
         self.verticalLayout_3.addWidget(self.output_buttons_frame)
 
-
         self.verticalLayout_7.addWidget(self.output_container)
-
 
         self.verticalLayout_5.addWidget(self.details_frame)
 
@@ -411,52 +406,72 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CSVToAccessGUI", None))
-        self.title_label.setText(QCoreApplication.translate("MainWindow", u"CSVToAccessGUI", None))
-        self.subtitle_label.setText(QCoreApplication.translate("MainWindow", u"Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente", None))
-#if QT_CONFIG(tooltip)
-        self.help_button.setToolTip(QCoreApplication.translate("MainWindow", u"Acerca de/Ayuda", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate(
+            "MainWindow", u"CSVToAccessGUI", None))
+        self.title_label.setText(QCoreApplication.translate(
+            "MainWindow", u"CSVToAccessGUI", None))
+        self.subtitle_label.setText(QCoreApplication.translate(
+            "MainWindow", u"Vuelca los datos de tus archivos CSV a una base de datos MS Access f\u00e1cilmente", None))
+# if QT_CONFIG(tooltip)
+        self.help_button.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Acerca de/Ayuda", None))
 #endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.settings_button.setToolTip(QCoreApplication.translate("MainWindow", u"Configuraci\u00f3n", None))
+# if QT_CONFIG(tooltip)
+        self.settings_button.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Configuraci\u00f3n", None))
 #endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.clean_left_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar input", None))
+# if QT_CONFIG(tooltip)
+        self.clean_left_button.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Limpiar input", None))
 #endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.clean_right_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar input", None))
+# if QT_CONFIG(tooltip)
+        self.clean_right_button.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Limpiar input", None))
 #endif // QT_CONFIG(tooltip)
         self.clean_right_button.setText("")
-        self.selected_table_label.setText(QCoreApplication.translate("MainWindow", u"Tabla seleccionada:", None))
-#if QT_CONFIG(tooltip)
-        self.available_tables_combo.setToolTip(QCoreApplication.translate("MainWindow", u"Selecciona una tabla del archivo mdb", None))
+        self.selected_table_label.setText(QCoreApplication.translate(
+            "MainWindow", u"Tabla seleccionada:", None))
+# if QT_CONFIG(tooltip)
+        self.available_tables_combo.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Selecciona una tabla del archivo mdb", None))
 #endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.dump_data_button.setToolTip(QCoreApplication.translate("MainWindow", u"Vuelca los datos del archivo csv", None))
+# if QT_CONFIG(tooltip)
+        self.dump_data_button.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Vuelca los datos del archivo csv", None))
 #endif // QT_CONFIG(tooltip)
-        self.dump_data_button.setText(QCoreApplication.translate("MainWindow", u" Volcar datos", None))
-#if QT_CONFIG(tooltip)
-        self.show_hide_details_button.setToolTip(QCoreApplication.translate("MainWindow", u"Muestra u oculta detalles", None))
+        self.dump_data_button.setText(QCoreApplication.translate(
+            "MainWindow", u"Volcar datos", None))
+# if QT_CONFIG(tooltip)
+        self.show_hide_details_button.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Muestra u oculta detalles", None))
 #endif // QT_CONFIG(tooltip)
-        self.show_hide_details_button.setText(QCoreApplication.translate("MainWindow", u" Mostrar/Ocultar detalles", None))
-        self.csv_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo CSV:", None))
-        self.mdb_table_label.setText(QCoreApplication.translate("MainWindow", u"Columnas del archivo MDB:", None))
-        self.output_label.setText(QCoreApplication.translate("MainWindow", u"Output:", None))
-#if QT_CONFIG(tooltip)
-        self.auto_scroll_checkbox.setToolTip(QCoreApplication.translate("MainWindow", u"Activar scroll autom\u00e1tico", None))
+        self.show_hide_details_button.setText(QCoreApplication.translate(
+            "MainWindow", u" Mostrar/Ocultar detalles", None))
+        self.csv_table_label.setText(QCoreApplication.translate(
+            "MainWindow", u"Columnas del archivo CSV:", None))
+        self.mdb_table_label.setText(QCoreApplication.translate(
+            "MainWindow", u"Columnas del archivo MDB:", None))
+        self.output_label.setText(
+            QCoreApplication.translate("MainWindow", u"Output:", None))
+# if QT_CONFIG(tooltip)
+        self.auto_scroll_checkbox.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Activar scroll autom\u00e1tico", None))
 #endif // QT_CONFIG(tooltip)
-        self.auto_scroll_checkbox.setText(QCoreApplication.translate("MainWindow", u"Scroll autom\u00e1tico", None))
-#if QT_CONFIG(tooltip)
-        self.clean_output_button.setToolTip(QCoreApplication.translate("MainWindow", u"Limpiar output", None))
+        self.auto_scroll_checkbox.setText(QCoreApplication.translate(
+            "MainWindow", u"Scroll autom\u00e1tico", None))
+# if QT_CONFIG(tooltip)
+        self.clean_output_button.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Limpiar output", None))
 #endif // QT_CONFIG(tooltip)
         self.clean_output_button.setText("")
-#if QT_CONFIG(tooltip)
-        self.copy_output_button.setToolTip(QCoreApplication.translate("MainWindow", u"Copiar output", None))
+# if QT_CONFIG(tooltip)
+        self.copy_output_button.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Copiar output", None))
 #endif // QT_CONFIG(tooltip)
         self.copy_output_button.setText("")
-#if QT_CONFIG(tooltip)
-        self.export_button.setToolTip(QCoreApplication.translate("MainWindow", u"Guardar output", None))
+# if QT_CONFIG(tooltip)
+        self.export_button.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"Guardar output", None))
 #endif // QT_CONFIG(tooltip)
         self.export_button.setText("")
     # retranslateUi
-

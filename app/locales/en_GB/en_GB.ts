@@ -87,7 +87,7 @@
     <message>
         <location filename="ui_MainWindow.py" line="427"/>
         <source>Limpiar input</source>
-        <translation>Clean input</translation>
+        <translation>Clear input</translation>
     </message>
     <message>
         <location filename="ui_MainWindow.py" line="430"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="ui_MainWindow.py" line="437"/>
         <source> Volcar datos</source>
-        <translation>Dump data</translation>
+        <translation> Dump data</translation>
     </message>
     <message>
         <location filename="ui_MainWindow.py" line="439"/>
@@ -117,17 +117,17 @@
     <message>
         <location filename="ui_MainWindow.py" line="441"/>
         <source> Mostrar/Ocultar detalles</source>
-        <translation>Show/Hide details</translation>
+        <translation> Show/Hide details</translation>
     </message>
     <message>
         <location filename="ui_MainWindow.py" line="442"/>
         <source>Columnas del archivo CSV:</source>
-        <translation>CSV file columns</translation>
+        <translation>CSV file columns:</translation>
     </message>
     <message>
         <location filename="ui_MainWindow.py" line="443"/>
         <source>Columnas del archivo MDB:</source>
-        <translation>MDB file columns</translation>
+        <translation>MDB file columns:</translation>
     </message>
     <message>
         <location filename="ui_MainWindow.py" line="444"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="ui_MainWindow.py" line="450"/>
         <source>Limpiar output</source>
-        <translation>Clean output</translation>
+        <translation>Clear output</translation>
     </message>
     <message>
         <location filename="ui_MainWindow.py" line="454"/>

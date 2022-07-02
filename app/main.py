@@ -23,6 +23,7 @@ from PySide6.QtCore import (
     QLibraryInfo,
     QLocale,
     QTranslator,
+    QEvent
 )
 from PySide6.QtWidgets import (
     QApplication,
@@ -389,10 +390,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.app_theme = QSettings("CSVToAccessGUI", "AppTheme")
         self.app_language = QSettings("CSVToAccessGUI", "AppLanguage")
 
+    # Detects language change and updates UI.
+    def changeEvent(self, event) -> None:
+        if event.type() == QEvent.LanguageChange:
+            self.retranslateUi(self)
+        return super().changeEvent(event)
+
     def set_settings(self):
         # Initial window size/pos last saved. Use default values for first time.
         self.resize(self.w_attrib.value("size", QSize(1000, 600)))
         self.move(self.w_attrib.value("pos", QPoint(50, 50)))
+
+        # Gets current QApplication
+        self.app = QApplication.instance()
+
+        # App locale
+        if self.app_language.value("es_l") == "true":
+            translator.load("es_ES", directory="./locales/es_ES")
+            self.app.installTranslator(translator)
+        if self.app_language.value("ca_l") == "true":
+            translator.load("ca_CA", directory="./locales/ca_CA")
+            self.app.installTranslator(translator)
+        if self.app_language.value("en_l") == "true":
+            translator.load("en_GB", directory="./locales/en_GB")
+            self.app.installTranslator(translator)
         # App settings
         if self.app_settings.value("show_output", "true") == "true":
             self.output_container.show()
@@ -543,10 +564,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    global translator
     translator = QTranslator()
     translator.load("qtbase_" + QLocale.system().name(),
                     QLibraryInfo.location(QLibraryInfo.TranslationsPath))
-    # translator.load("en_GB") <-- To apply translation from .qm file
     app.installTranslator(translator)
     gui = MainWindow()
     gui.show()
